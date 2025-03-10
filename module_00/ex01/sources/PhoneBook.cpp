@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:55:32 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/10 12:02:35 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:17:16 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,16 @@ void PhoneBook::search()
 	while(!std::cin.eof())
 	{
 		std::cout << "Insert index: ";
-		if (!std::getline(std::cin, input) && input != "")
+		if (std::getline(std::cin, input) && input != "")
 		{
 			if (input.size() == 1 && input[0] >= '1' && input[0] <= '8'\
-				&& _Contacts[input[0] - 1 - '0'].getFirstName().empty())
+				&& _Contacts[input[0] - 1 - '0'].getFirstName().size())
 				break ;
 		}
 		if (input != "")
 			std::cout << "Invalid index!" << std::endl;
 	}
-	if (std::cin.eof())
+	if (!std::cin.eof())
 		contactInfo(_Contacts[input[0] - 1 - '0']);
 }
 
