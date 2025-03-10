@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:16:39 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/05 14:14:27 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/10 11:41:28 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class Contact
 		std::string getLastName();
 		std::string getNickName();
 		std::string getNumber();
+		std::string getSecret();
 		void setFirstName(std::string info);
 		void setLastName(std::string info);
 		void setNickName(std::string info);

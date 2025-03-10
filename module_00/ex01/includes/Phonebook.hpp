@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:06:58 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/05 14:47:31 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/10 11:36:07 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ class PhoneBook
 		~PhoneBook();
 		void add();
 		void search();
+		void contactInfo(Contact contact);
 };
 
 void firstPage();
+int contactsPage(Contact contacts[8]);

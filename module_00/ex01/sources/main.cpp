@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:02:12 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/05 14:59:58 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/10 11:07:28 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int main()
 	PhoneBook pb;
 	std::string cmd;
 
-	firstPage();
 	while (cmd != "EXIT")
 	{
+		firstPage();
 		std::getline(std::cin, cmd);
 		if (cmd == "ADD")
 			pb.add();
