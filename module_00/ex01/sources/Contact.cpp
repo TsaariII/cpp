@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:55:27 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/10 11:43:27 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:14:40 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 Contact::Contact() {}
 
 Contact::~Contact() {}
+
 std::string Contact::getFirstName() { return (_FirstName); }
 
 std::string Contact::getLastName() { return (_LastName); }
