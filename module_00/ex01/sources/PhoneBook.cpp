@@ -6,11 +6,12 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:55:32 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/12 13:14:12 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:28:14 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Phonebook.hpp"
+#include <iomanip>
 
 PhoneBook::PhoneBook()
 {
@@ -139,9 +140,14 @@ int contactsPage(Contact contacts[8])
 	char c = '0';
 	std::string input;
 
-	std::cout << "---------------------------------------------" << std::endl;
-	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
-	std::cout << "|----------|----------|----------|----------|" << std::endl;
+	std::cout << std::setw(44) << std::setfill('-') << "-" << "|" << std::endl;
+	std::cout << std::setfill(' ') << "|" << std::setw(10) << "Index" << "|"
+			<< std::setw(10) << "First Name" << "|"
+			<< std::setw(10) << "Last Name" << "|"
+			<< std::setw(10) << "Nick Name" << "|" << std::endl;
+	std::cout << std::setw(44) << std::setfill('-') << "-" << std::endl;
+	// std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+	// std::cout << "|----------|----------|----------|----------|" << std::endl;
 	while (++c <= '8')
 	{
 		if (contacts[c - 1 - '0'].getFirstName().size() && ++i)
@@ -158,6 +164,6 @@ int contactsPage(Contact contacts[8])
 			std::cout << "|" << std::endl;
 		}
 	}
-	std::cout << "---------------------------------------------" << std::endl;
+	std::cout << std::setw(44) << std::setfill('-') << "-" << std::endl;
 	return (i);
 }
