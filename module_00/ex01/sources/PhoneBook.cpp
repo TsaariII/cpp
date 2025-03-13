@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:55:32 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/12 15:28:14 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:56:41 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,36 +54,45 @@ void PhoneBook::add()
 	std::string str;
 	if (_Id == 8)
 		_Id = 0;
-	std::cout << "---------------------------------------------" << std::endl;
-	auto getInput = [](const  std::string &prompt) -> std::string {
+	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
+	auto getInput = [](const  std::string &prompt) -> std::string{
 		std::string input;
 		while (input.empty())
 		{
 			std::cout << prompt;
+			
 			if (!std::getline(std::cin, input))
+			{
+				std::cin.clear();
+				std::cout << std::endl;
 				return "";
+			}
 		}
 		return (input);
 	};
-	_Contacts[_Id].setFirstName(getInput("First name: "));
-	_Contacts[_Id].setLastName(getInput("Last name: "));
-	_Contacts[_Id].setNickName(getInput("Nick name: "));
-	_Contacts[_Id].setNumber(getInput("Phone number: "));
-	_Contacts[_Id].setSecret(getInput("Darkest secret: "));
-	std::cout << "---------------------------------------------" << std::endl;
+	_Contacts[_Id].setFirstName(getInput("| First name: "));
+	_Contacts[_Id].setLastName(getInput("| Last name: "));
+	_Contacts[_Id].setNickName(getInput("| Nick name: "));
+	_Contacts[_Id].setNumber(getInput("| Phone number: "));
+	_Contacts[_Id].setSecret(getInput("| Darkest secret: "));
+	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
 	_Id++;
 }
 
 void PhoneBook::contactInfo(Contact contact)
 {
-	std::cout << "---------------------------------------------" << std::endl;
-	std::cout << "---------------------------------------------" << std::endl;
-	std::cout << "  First name:   " << contact.getFirstName() << std::endl;
-	std::cout << "  Last name:    " << contact.getLastName() << std::endl;
-	std::cout << "  Nick name:    " << contact.getNickName() << std::endl;
-	std::cout << "  Phone number: " << contact.getNumber() << std::endl;
-	std::cout << "  Dark secret: " << contact.getSecret() << std::endl;
-	std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
+    std::cout << "| " << std::left << std::setw(42) << std::setfill(' ') 
+              << ("First name:   " + contact.getFirstName()) << "|" << std::endl;
+    std::cout << "| " << std::left << std::setw(42) 
+              << ("Last name:    " + contact.getLastName()) << "|" << std::endl;
+    std::cout << "| " << std::left << std::setw(42) 
+              << ("Nick name:    " + contact.getNickName()) << "|" << std::endl;
+    std::cout << "| " << std::left << std::setw(42) 
+              << ("Phone number: " + contact.getNumber()) << "|" << std::endl;
+    std::cout << "| " << std::left << std::setw(42) 
+              << ("Dark secret:  " + contact.getSecret()) << "|" << std::endl;
+    std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
 }
 
 void PhoneBook::search()
@@ -140,14 +149,12 @@ int contactsPage(Contact contacts[8])
 	char c = '0';
 	std::string input;
 
-	std::cout << std::setw(44) << std::setfill('-') << "-" << "|" << std::endl;
+	std::cout << "|" << std::setw(43)   << std::setfill('-')  << "-" << "|" << std::endl;
 	std::cout << std::setfill(' ') << "|" << std::setw(10) << "Index" << "|"
 			<< std::setw(10) << "First Name" << "|"
 			<< std::setw(10) << "Last Name" << "|"
 			<< std::setw(10) << "Nick Name" << "|" << std::endl;
-	std::cout << std::setw(44) << std::setfill('-') << "-" << std::endl;
-	// std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
-	// std::cout << "|----------|----------|----------|----------|" << std::endl;
+	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
 	while (++c <= '8')
 	{
 		if (contacts[c - 1 - '0'].getFirstName().size() && ++i)
@@ -164,6 +171,6 @@ int contactsPage(Contact contacts[8])
 			std::cout << "|" << std::endl;
 		}
 	}
-	std::cout << std::setw(44) << std::setfill('-') << "-" << std::endl;
+	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
 	return (i);
 }
