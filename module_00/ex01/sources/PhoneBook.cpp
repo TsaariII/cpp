@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:55:32 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/13 11:56:41 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:21:45 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,12 @@ void PhoneBook::search()
 	int index;
 	if (!contactsPage(_Contacts))
 	{
-		std::cout << "Oh no! Looks like your phonebook is empty!" << std::endl;
+		std::cout << "| Oh no! Looks like your phonebook is empty!|" << std::endl;
 		return ;
 	}
-	while(true)
+	while(true && input != "EXIT")
 	{
-		std::cout << "Insert index: ";
+		std::cout << "Type EXIT or insert index: ";
 		if (!std::getline(std::cin, input) || input.empty())
 		{
 			std::cout << "Invalid index!" << std::endl;
@@ -121,7 +121,8 @@ void PhoneBook::search()
 				break ;
 			}
 		}
-		std::cout << "Invalid index!" << std::endl;
+		if (input != "EXIT")
+			std::cout << "Invalid index!" << std::endl;
 	}
 }
 
@@ -135,42 +136,28 @@ std::string columnWidth(std::string column, size_t width)
 	return (column);
 }
 
-std::string fillWithSpace(int amount)
+bool contactsPage(Contact contacts[8])
 {
-	std::string spaces;
-	while (amount--)
-		spaces.append(" ");
-	return (spaces);
-}
-
-int contactsPage(Contact contacts[8])
-{
-	int i = 0;
-	char c = '0';
 	std::string input;
-
 	std::cout << "|" << std::setw(43)   << std::setfill('-')  << "-" << "|" << std::endl;
 	std::cout << std::setfill(' ') << "|" << std::setw(10) << "Index" << "|"
 			<< std::setw(10) << "First Name" << "|"
 			<< std::setw(10) << "Last Name" << "|"
 			<< std::setw(10) << "Nick Name" << "|" << std::endl;
 	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
-	while (++c <= '8')
+	if (contacts[0].getFirstName().empty())
+		return false;
+    for (int i = 0; i < 8; ++i)
 	{
-		if (contacts[c - 1 - '0'].getFirstName().size() && ++i)
+        if (!contacts[i].getFirstName().empty())
 		{
-			input = c;
-			input = columnWidth(input, 10);
-			std::cout << "|" << fillWithSpace(10 - input.size()) << input;
-			input = columnWidth(contacts[c - 1 - '0'].getFirstName(), 10);
-			std::cout << "|" << fillWithSpace(10 - input.size()) << input ;
-			input = columnWidth(contacts[c - 1 - '0'].getLastName(), 10);
-			std::cout << "|" << fillWithSpace(10 - input.size()) << input ;
-			input = columnWidth(contacts[c - 1 - '0'].getNickName(), 10);
-			std::cout << "|" << fillWithSpace(10 - input.size()) << input ;
-			std::cout << "|" << std::endl;
-		}
-	}
+            std::cout << "| " << std::setw(9) << std::right << std::setfill(' ')  << (i + 1)
+                      << "| " << std::setw(9) << std::right << std::setfill(' ')  << columnWidth(contacts[i].getFirstName(), 9)
+                      << "| " << std::setw(9) << std::right << std::setfill(' ')  << columnWidth(contacts[i].getLastName(), 9) 
+                      << "| " << std::setw(9) << std::right << std::setfill(' ')  << columnWidth(contacts[i].getNickName(), 9)
+                      << "|" << std::endl;
+        }
+    }
 	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
-	return (i);
+	return true;
 }
