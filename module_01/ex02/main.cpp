@@ -5,20 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 13:43:13 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/13 16:30:36 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/03/13 16:38:27 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/03/13 16:51:48 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#include <string>
+#include <iostream>
 
 int main()
 {
-	int size = 10;
-	Zombie *horde;
-	horde = zombieHorde(size, "Walter");
-	for (int i = 0; i < size; i++)
-		horde->announce();
-	delete [] horde;
-	return (0);
+    std::string str = "HI THIS IS BRAIN";
+    std::string *stringPTR = &str;
+    std::string &stringREF = str;
+    
+    std::cout << &str << std::endl;
+    std::cout << &stringPTR << std::endl;
+    std::cout << &stringREF << std::endl;
+    std::cout << str << std::endl;
+    std::cout << *stringPTR << std::endl;
+    std::cout << stringREF << std::endl;
+    return 0;
 }
