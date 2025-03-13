@@ -1,0 +1,39 @@
+
+NAME = bank
+
+SRC_DIR = sources
+
+SRC = $(SRC_DIR)/tests.cpp\
+	$(SRC_DIR)/Account.cpp\
+
+OBJ_DIR = objects
+
+OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
+
+COMP = c++
+
+CFLAGS = -Wall -Wextra -Werror
+
+all: $(NAME)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@$(COMP) $(CFLAGS) -c $< -o $@
+
+$(NAME): $(OBJ_DIR) $(OBJ)
+	@$(COMP) $(CFLAGS) $(OBJ) -o $(NAME)
+	@echo "\n\033[0;32mShow me the money\033[0m\n"
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+clean:
+	@rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
+
+fclean: clean
+	@rm -f $(NAME)
+	@echo "\n\033[0;31mAll is gone\033[0m\n"
+
+re: fclean all
+
+.PHONY: all clean re fclean
