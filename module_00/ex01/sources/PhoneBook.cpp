@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:55:32 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/13 12:21:45 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/14 11:05:45 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void PhoneBook::add()
 		while (input.empty())
 		{
 			std::cout << prompt;
-			
+
 			if (!std::getline(std::cin, input))
 			{
 				std::cin.clear();
@@ -81,18 +81,18 @@ void PhoneBook::add()
 
 void PhoneBook::contactInfo(Contact contact)
 {
-    std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
-    std::cout << "| " << std::left << std::setw(42) << std::setfill(' ') 
-              << ("First name:   " + contact.getFirstName()) << "|" << std::endl;
-    std::cout << "| " << std::left << std::setw(42) 
-              << ("Last name:    " + contact.getLastName()) << "|" << std::endl;
-    std::cout << "| " << std::left << std::setw(42) 
-              << ("Nick name:    " + contact.getNickName()) << "|" << std::endl;
-    std::cout << "| " << std::left << std::setw(42) 
-              << ("Phone number: " + contact.getNumber()) << "|" << std::endl;
-    std::cout << "| " << std::left << std::setw(42) 
-              << ("Dark secret:  " + contact.getSecret()) << "|" << std::endl;
-    std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
+	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
+	std::cout << "| " << std::left << std::setw(42) << std::setfill(' ')
+			  << ("First name:   " + contact.getFirstName()) << std::endl;
+	std::cout << "| " << std::left << std::setw(42)
+			  << ("Last name:    " + contact.getLastName())  << std::endl;
+	std::cout << "| " << std::left << std::setw(42)
+			  << ("Nick name:    " + contact.getNickName())  << std::endl;
+	std::cout << "| " << std::left << std::setw(42)
+			  << ("Phone number: " + contact.getNumber())  << std::endl;
+	std::cout << "| " << std::left << std::setw(42)
+			  << ("Dark secret:  " + contact.getSecret())  << std::endl;
+	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
 }
 
 void PhoneBook::search()
@@ -139,25 +139,25 @@ std::string columnWidth(std::string column, size_t width)
 bool contactsPage(Contact contacts[8])
 {
 	std::string input;
-	std::cout << "|" << std::setw(43)   << std::setfill('-')  << "-" << "|" << std::endl;
-	std::cout << std::setfill(' ') << "|" << std::setw(10) << "Index" << "|"
-			<< std::setw(10) << "First Name" << "|"
-			<< std::setw(10) << "Last Name" << "|"
-			<< std::setw(10) << "Nick Name" << "|" << std::endl;
+	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
+	std::cout << std::right << std::setw(10) << std::setfill(' ') << "|" << "Index" << "|"
+			  << std::setw(10) << "First Name" << "|"
+			  << std::setw(10) << "Last Name" << "|"
+			  << std::setw(10) << "Nick Name" << "|" << std::endl;
 	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
 	if (contacts[0].getFirstName().empty())
 		return false;
-    for (int i = 0; i < 8; ++i)
+	for (int i = 0; i < 8; ++i)
 	{
-        if (!contacts[i].getFirstName().empty())
+		if (!contacts[i].getFirstName().empty())
 		{
-            std::cout << "| " << std::setw(9) << std::right << std::setfill(' ')  << (i + 1)
-                      << "| " << std::setw(9) << std::right << std::setfill(' ')  << columnWidth(contacts[i].getFirstName(), 9)
-                      << "| " << std::setw(9) << std::right << std::setfill(' ')  << columnWidth(contacts[i].getLastName(), 9) 
-                      << "| " << std::setw(9) << std::right << std::setfill(' ')  << columnWidth(contacts[i].getNickName(), 9)
-                      << "|" << std::endl;
-        }
-    }
+			std::cout << "| " << std::setw(9) << std::right << std::setfill(' ') << (i + 1)
+					  << "| " << std::setw(9) << std::right << std::setfill(' ') << columnWidth(contacts[i].getFirstName(), 9)
+					  << "| " << std::setw(9) << std::right << std::setfill(' ') << columnWidth(contacts[i].getLastName(), 9)
+					  << "| " << std::setw(9) << std::right << std::setfill(' ') << columnWidth(contacts[i].getNickName(), 9)
+					  << "|" << std::endl;
+		}
+	}
 	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
 	return true;
 }
