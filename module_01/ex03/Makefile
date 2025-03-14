@@ -1,11 +1,12 @@
 
-NAME = zombie
+NAME = weapons
 
 SRC_DIR = sources
 
 SRC = $(SRC_DIR)/main.cpp\
-	$(SRC_DIR)/Zombie.cpp\
-	$(SRC_DIR)/zombieHorde.cpp
+	$(SRC_DIR)/HumanA.cpp\
+	$(SRC_DIR)/HumanB.cpp\
+	$(SRC_DIR)/Weapon.cpp\
 
 OBJ_DIR = objects
 
@@ -22,7 +23,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@$(COMP) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\n\033[0;32mZombies!! Zombies!! Zombies are coming!!\033[0m\n"
+	@echo "\n\033[0;32mWe have weapons!\033[0m\n"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
