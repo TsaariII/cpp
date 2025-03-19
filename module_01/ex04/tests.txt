@@ -1,0 +1,29 @@
+Simple one occurance of the word *green*
+The house is green
+
+More complex multiple occurrences of the *green*
+The house is green and the car is green. I also have green pants. So should I put on a green shirt.
+
+No occurance of the word *green*
+My dog is brown. And it has a dog house
+
+The word *green* at beginning and end
+green grass is green
+
+The word *green* is substring of a larger word
+The glossy laurel is fully hardy and evergreen
+
+What if the word *green* is replaced by *green*?
+The house is green and the car is green. I also have green pants. So should I put on a green shirt.
+
+You can try with a nonexistent file
+
+You can change the permissions of this file
+chmod 000 test.txt
+
+Then you can make a directory with no write permission
+mkdir no_write_permission
+touch no_write_permission/test.txt
+chmod 444 no_write_permission/test.txt
+
+Now you can try open the program with empty file
