@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 13:52:05 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/21 17:26:35 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/03/19 10:42:35 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/03/19 10:46:09 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#pragma once
+#include <iostream>
+#include <string>
 
-Zombie *newZombie(std::string name)
+class Harl
 {
-	Zombie *zptr = new (std::nothrow) Zombie(name);
-	return (zptr);
-}
+    private:
+        void debug();
+        void info();
+        void warning();
+        void error();
+    public:
+        void complain(std::string level);   
+    
+};

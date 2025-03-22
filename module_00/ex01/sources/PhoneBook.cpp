@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:55:32 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/14 11:05:45 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/22 09:59:15 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ void PhoneBook::add()
 				std::cout << std::endl;
 				return "";
 			}
+			if (std::cin.eof())
+			{
+				std::cout << std::endl;
+				return (0);
+			}
 		}
 		return (input);
 	};
@@ -104,8 +109,13 @@ void PhoneBook::search()
 		std::cout << "| Oh no! Looks like your phonebook is empty!|" << std::endl;
 		return ;
 	}
-	while(true && input != "EXIT")
+	while(input.empty() && input != "EXIT")
 	{
+		if (std::cin.eof())
+		{
+			std::cout << std::endl;
+			return ;
+		}
 		std::cout << "Type EXIT or insert index: ";
 		if (!std::getline(std::cin, input) || input.empty())
 		{

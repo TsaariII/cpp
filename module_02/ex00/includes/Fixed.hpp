@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 13:52:05 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/21 17:26:35 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/03/20 10:35:51 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/03/20 11:34:48 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#pragma once
+#include <iostream>
 
-Zombie *newZombie(std::string name)
+class Fixed
 {
-	Zombie *zptr = new (std::nothrow) Zombie(name);
-	return (zptr);
-}
+	private:
+		int _FixedNum;
+		static const int _FractBits = 8;
+	public:
+		Fixed();
+		Fixed(const Fixed &copy);
+		Fixed &operator=(const Fixed &copy);
+		~Fixed();
+		int getRawBits(void) const;
+		void setRawBits(int const raw);
+};

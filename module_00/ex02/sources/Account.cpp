@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:01:24 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/13 15:31:05 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/22 10:00:34 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
-Account::Account(int initial_deposit) : _amount(initial_deposit), _nbDeposits(0)
+Account::Account(int initial_deposit) : _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
     static int indx;
     _accountIndex = indx;
@@ -69,7 +69,7 @@ void	Account::displayStatus( void ) const
     _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";amount:"
         << _amount << ";deposits:" << _nbDeposits
-        << ";withdrawls:" << _nbWithdrawals << std::endl;   
+        << ";withdrawls:" << _nbWithdrawals << std::endl;
 };
 
 int	Account::getNbAccounts( void )  { return _nbAccounts; };
@@ -81,7 +81,7 @@ void	Account::displayAccountsInfos( void )
     _displayTimestamp();
     std::cout << "accounts:" << _nbAccounts << ";total:"
         << _totalAmount << ";deposits:" << _totalNbDeposits
-        << ";withdrawls:" << _totalNbWithdrawals << std::endl; 
+        << ";withdrawls:" << _totalNbWithdrawals << std::endl;
 };
 void	Account::_displayTimestamp( void )
 {
