@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:45:01 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/22 14:13:21 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:04:34 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
 	return out;
 }
 
-bool Fixed::operator>(const Fixed &copy) { return _FixedNum > copy._FixedNum; }
-bool Fixed::operator<(const Fixed &copy) { return _FixedNum < copy._FixedNum; }
-bool Fixed::operator>=(const Fixed &copy) { return _FixedNum >= copy._FixedNum; }
-bool Fixed::operator<=(const Fixed &copy) { return _FixedNum <= copy._FixedNum; }
-bool Fixed::operator==(const Fixed &copy) { return _FixedNum == copy._FixedNum; }
-bool Fixed::operator!=(const Fixed &copy) { return _FixedNum != copy._FixedNum; }
+bool Fixed::operator>(const Fixed &copy) const { return _FixedNum > copy._FixedNum; }
+bool Fixed::operator<(const Fixed &copy) const { return _FixedNum < copy._FixedNum; }
+bool Fixed::operator>=(const Fixed &copy) const { return _FixedNum >= copy._FixedNum; }
+bool Fixed::operator<=(const Fixed &copy) const { return _FixedNum <= copy._FixedNum; }
+bool Fixed::operator==(const Fixed &copy) const { return _FixedNum == copy._FixedNum; }
+bool Fixed::operator!=(const Fixed &copy) const { return _FixedNum != copy._FixedNum; }
 
 Fixed Fixed::operator+(const Fixed &copy) const { return Fixed(this->toFloat() + copy.toFloat()); };
 Fixed Fixed::operator-(const Fixed &copy) const { return Fixed(this->toFloat() - copy.toFloat()); };
@@ -71,7 +71,7 @@ Fixed Fixed::operator/(const Fixed &copy) const {
 		return Fixed(this->_FixedNum);
 	return Fixed(this->toFloat() / copy.toFloat()); };
 
-Fixed Fixed::operator++() {
+Fixed& Fixed::operator++() {
 	_FixedNum += 1;
 	return *this;
 };
@@ -80,7 +80,7 @@ Fixed Fixed::operator++(int) {
 	_FixedNum += 1;
 	return temp;
 };
-Fixed Fixed::operator--() {
+Fixed& Fixed::operator--() {
 	_FixedNum -= 1;
 	return *this;
 };
@@ -89,3 +89,8 @@ Fixed Fixed::operator--(int) {
 	_FixedNum -= 1;
 	return temp;
 };
+
+Fixed& Fixed::min(Fixed &a, Fixed &b) { return a < b ? a : b; }
+const Fixed& Fixed::min(const Fixed &a, const Fixed &b) { return a < b ? a : b; }
+Fixed& Fixed::max(Fixed &a, Fixed &b) { return a > b ? a : b; }
+const Fixed& Fixed::max(const Fixed &a, const Fixed &b) { return a > b ? a : b; }
