@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:16:36 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/24 13:42:46 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:20:56 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,6 @@ class Point
 		Point();
 		Point(const float x, const float y);
 		Point &operator=(const Point &copy);
+		Fixed getX();
+		Fixed getY();
 };

@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 14:06:37 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/24 16:16:12 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:18:16 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void changeStr(const std::string filename, const std::string s1, const std::stri
 		while ((pos = line.find(s1, indx)) != std::string::npos)
 		{
 			newLine += line.substr(indx, pos - indx) + s2;
-			//line = line.substr(indx + s1.length());
 			indx = pos + s1.length();
 		}
 		newLine += line.substr(indx);

@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:45:01 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/24 13:38:01 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:36:26 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ bool Fixed::operator<=(const Fixed &copy) const { return _FixedNum <= copy._Fixe
 bool Fixed::operator==(const Fixed &copy) const { return _FixedNum == copy._FixedNum; }
 bool Fixed::operator!=(const Fixed &copy) const { return _FixedNum != copy._FixedNum; }
 
-Fixed Fixed::operator+(const Fixed &copy) const { return Fixed(this->toFloat() + copy.toFloat()); };
-Fixed Fixed::operator-(const Fixed &copy) const { return Fixed(this->toFloat() - copy.toFloat()); };
-Fixed Fixed::operator*(const Fixed &copy) const { return Fixed(this->toFloat() * copy.toFloat()); };
+Fixed Fixed::operator+(const Fixed &copy) const { return Fixed(this->toFloat() + copy.toFloat()); }
+Fixed Fixed::operator-(const Fixed &copy) const { return Fixed(this->toFloat() - copy.toFloat()); }
+Fixed Fixed::operator*(const Fixed &copy) const { return Fixed(this->toFloat() * copy.toFloat()); }
 Fixed Fixed::operator/(const Fixed &copy) const {
 	if (copy._FixedNum == 0)
 		return Fixed(this->_FixedNum);
-	return Fixed(this->toFloat() / copy.toFloat()); };
+	return Fixed(this->toFloat() / copy.toFloat()); }
 
 Fixed& Fixed::operator++() {
 	_FixedNum += 1;

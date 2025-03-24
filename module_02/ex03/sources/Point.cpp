@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:19:54 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/24 15:29:52 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:20:34 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ Point &Point::operator=(const Point &copy) {
 
 Point::~Point() {}
 
-const float Point::get() {return _X; }
-const float Point::get() {return ; }
+Fixed Point::getX() {return _X; }
+Fixed Point::getY() {return _Y; }
