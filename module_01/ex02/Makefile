@@ -11,7 +11,7 @@ all: $(NAME)
 
 $(NAME): $(SRC)
 	@$(COMP) $(CFLAGS) -o $@ $^
-	@echo "\n\033[0;32mGimme some brain\033[0m\n"
+	@echo "\n\033[0;32mHI THIS IS BRAIN\033[0m\n"
 
 clean:
 

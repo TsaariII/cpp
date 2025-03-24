@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:44:18 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/14 11:44:39 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/24 10:30:38 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class HumanB
 {
 	private:
 		std::string _Name;
-		Weapon _Weapon;
+		Weapon *_Weapon;
 
 	public:
 		HumanB(std::string name);
