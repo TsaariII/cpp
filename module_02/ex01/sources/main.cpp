@@ -6,11 +6,12 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:44:11 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/21 17:33:52 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/27 10:34:19 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Fixed.hpp"
+
 
 int main( void )
 {

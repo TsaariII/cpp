@@ -6,38 +6,27 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:45:01 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/24 16:36:26 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:32:52 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Fixed.hpp"
 
-Fixed::Fixed() : _FixedNum(0) {std::cout << "Default constructor called" << std::endl; }
+Fixed::Fixed() : _FixedNum(0) {}
 
-Fixed::Fixed(const Fixed &copy) : _FixedNum(copy._FixedNum) {
-	std::cout << "Copy constructor called" << std::endl;
-}
+Fixed::Fixed(const Fixed &copy) : _FixedNum(copy._FixedNum) {}
 
-Fixed::Fixed(const int num) {
-	std::cout << "Int constructor called" << std::endl;
-	_FixedNum = num << _FractBits;
-}
+Fixed::Fixed(const int num) { _FixedNum = num << _FractBits; }
 
-Fixed::Fixed(const float fNum) {
-	std::cout << "Float constructor called" << std::endl;
-	_FixedNum = roundf(fNum * (1 << _FractBits));
-}
+Fixed::Fixed(const float fNum) { _FixedNum = roundf(fNum * (1 << _FractBits)); }
 
 Fixed &Fixed::operator=(const Fixed &copy) {
 	if (this != &copy)
-	{
-		std::cout << "Copy assignment operator called" << std::endl;
 		_FixedNum = copy.getRawBits();
-	}
 	return (*this);
 }
 
-Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
+Fixed::~Fixed() {}
 
 void Fixed::setRawBits(int const raw) { _FixedNum = raw; }
 
@@ -64,11 +53,21 @@ bool Fixed::operator!=(const Fixed &copy) const { return _FixedNum != copy._Fixe
 
 Fixed Fixed::operator+(const Fixed &copy) const { return Fixed(this->toFloat() + copy.toFloat()); }
 Fixed Fixed::operator-(const Fixed &copy) const { return Fixed(this->toFloat() - copy.toFloat()); }
-Fixed Fixed::operator*(const Fixed &copy) const { return Fixed(this->toFloat() * copy.toFloat()); }
-Fixed Fixed::operator/(const Fixed &copy) const {
+Fixed Fixed::operator*(const Fixed &copy) const
+{
+	Fixed result;
+	result.setRawBits((this->_FixedNum * copy._FixedNum) >> _FractBits);
+	return result;
+}
+
+Fixed Fixed::operator/(const Fixed &copy) const
+{
 	if (copy._FixedNum == 0)
-		return Fixed(this->_FixedNum);
-	return Fixed(this->toFloat() / copy.toFloat()); }
+		return Fixed();
+	Fixed result;
+	result.setRawBits(this->toFloat() / copy.toFloat());
+	return result;
+}
 
 Fixed& Fixed::operator++() {
 	_FixedNum += 1;
@@ -93,3 +92,4 @@ Fixed& Fixed::min(Fixed &a, Fixed &b) { return a < b ? a : b; }
 const Fixed& Fixed::min(const Fixed &a, const Fixed &b) { return a < b ? a : b; }
 Fixed& Fixed::max(Fixed &a, Fixed &b) { return a > b ? a : b; }
 const Fixed& Fixed::max(const Fixed &a, const Fixed &b) { return a > b ? a : b; }
+

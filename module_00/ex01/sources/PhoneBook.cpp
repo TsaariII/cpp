@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:55:32 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/22 09:59:15 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:54:02 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void PhoneBook::add()
 		_Id = 0;
 	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
 	auto getInput = [](const  std::string &prompt) -> std::string{
+		if (std::cin.eof())
+			return "";
 		std::string input;
 		while (input.empty())
 		{
@@ -63,14 +65,8 @@ void PhoneBook::add()
 
 			if (!std::getline(std::cin, input))
 			{
-				std::cin.clear();
 				std::cout << std::endl;
 				return "";
-			}
-			if (std::cin.eof())
-			{
-				std::cout << std::endl;
-				return (0);
 			}
 		}
 		return (input);
@@ -80,7 +76,8 @@ void PhoneBook::add()
 	_Contacts[_Id].setNickName(getInput("| Nick name: "));
 	_Contacts[_Id].setNumber(getInput("| Phone number: "));
 	_Contacts[_Id].setSecret(getInput("| Darkest secret: "));
-	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
+	if (!std::cin.eof())
+		std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
 	_Id++;
 }
 
@@ -150,7 +147,7 @@ bool contactsPage(Contact contacts[8])
 {
 	std::string input;
 	std::cout << "|" << std::setw(43) << std::setfill('-') << "-" << "|" << std::endl;
-	std::cout << std::right << std::setw(10) << std::setfill(' ') << "|" << "Index" << "|"
+	std::cout << std::right << "|" << std::setw(10) << std::setfill(' ') << "Index" << "|"
 			  << std::setw(10) << "First Name" << "|"
 			  << std::setw(10) << "Last Name" << "|"
 			  << std::setw(10) << "Nick Name" << "|" << std::endl;

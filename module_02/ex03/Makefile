@@ -1,10 +1,11 @@
 
-NAME = fixed
+NAME = bsp
 
 SRC_DIR = sources
 
 SRC = $(SRC_DIR)/main.cpp\
 	$(SRC_DIR)/Fixed.cpp\
+	$(SRC_DIR)/Point.cpp
 
 OBJ_DIR = objects
 
@@ -21,7 +22,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@$(COMP) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\n\033[0;32mNumbers. What are they actually?\033[0m\n"
+	@echo "\n\033[0;32mIn or out. Who knows?\033[0m\n"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
