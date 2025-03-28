@@ -6,13 +6,14 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:35:51 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/26 10:41:52 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/28 15:20:42 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <cmath>
+#include <climits>
 
 class Fixed
 {

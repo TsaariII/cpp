@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:45:01 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/27 14:39:42 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:36:07 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,29 @@ Fixed::Fixed(const Fixed &copy) {
 
 Fixed::Fixed(const int num) {
 	std::cout << "Int constructor called" << std::endl;
-	_FixedNum = num << _FractBits;
+	try {
+		if (num > (INT_MAX >> _FractBits) || num < (INT_MIN >> _FractBits))
+			throw std::overflow_error("Overflow detected");
+		_FixedNum = num << _FractBits;
+	}
+	catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+		_FixedNum = 0;
+	}
 }
 
 Fixed::Fixed(const float fNum) {
 	std::cout << "Float constructor called" << std::endl;
-	_FixedNum = roundf(fNum * (1 << _FractBits));
+	try {
+		float scaled = fNum * (1 << _FractBits);
+		if (scaled > static_cast<float>(INT_MAX) || scaled < static_cast<float>(INT_MIN))
+			throw std::overflow_error("Overflow detected");
+		_FixedNum = roundf(fNum * (1 << _FractBits));
+	}
+	catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+		_FixedNum = 0;
+	}
 }
 
 Fixed &Fixed::operator=(const Fixed &copy) {
@@ -63,28 +80,99 @@ bool Fixed::operator<=(const Fixed &copy) const { return _FixedNum <= copy._Fixe
 bool Fixed::operator==(const Fixed &copy) const { return _FixedNum == copy._FixedNum; }
 bool Fixed::operator!=(const Fixed &copy) const { return _FixedNum != copy._FixedNum; }
 
-Fixed Fixed::operator+(const Fixed &copy) const { return Fixed(this->toFloat() + copy.toFloat()); };
-Fixed Fixed::operator-(const Fixed &copy) const { return Fixed(this->toFloat() - copy.toFloat()); };
-Fixed Fixed::operator*(const Fixed &copy) const { return Fixed(this->toFloat() * copy.toFloat()); };
+Fixed Fixed::operator+(const Fixed &copy) const
+{
+	try {
+		float result = this->toFloat() + copy.toFloat();
+		float scaled = result * (1 << _FractBits);
+		if (scaled > INT_MAX || scaled < INT_MIN)
+			throw std::overflow_error("Overflow detected");
+		return Fixed(result);
+	}
+	catch (const std::exception &e){
+		std::cerr << e.what() << std::endl;
+		return Fixed();
+	}
+};
+
+Fixed Fixed::operator-(const Fixed &copy) const
+{
+	try {
+		float result = this->toFloat() - copy.toFloat();
+		float scaled = result * (1 << _FractBits);
+		if (scaled > INT_MAX || scaled < INT_MIN)
+			throw std::overflow_error("Overflow detected");
+		return Fixed(result);
+	}
+	catch (const std::exception &e){
+		std::cerr << e.what() << std::endl;
+		return Fixed();
+	}
+};
+Fixed Fixed::operator*(const Fixed &copy) const
+{
+	try {
+		float result = this->toFloat() * copy.toFloat();
+		float scaled = result * (1 << _FractBits);
+		if (scaled > INT_MAX || scaled < INT_MIN)
+			throw std::overflow_error("Overflow detected");
+		return Fixed(result);
+	}
+	catch (const std::exception &e){
+		std::cerr << e.what() << std::endl;
+		return Fixed();
+	}
+};
 Fixed Fixed::operator/(const Fixed &copy) const {
-	if (copy._FixedNum == 0)
-		return Fixed(this->_FixedNum);
-	return Fixed(this->toFloat() / copy.toFloat()); };
+	try {
+		if (copy._FixedNum == 0)
+			return Fixed(this->_FixedNum);
+		float result = this->toFloat() + copy.toFloat();
+		float scaled = result * (1 << _FractBits);
+		if (scaled > INT_MAX || scaled < INT_MIN)
+			throw std::overflow_error("Overflow detected");
+		return Fixed(result);
+	}
+	catch (const std::exception &e){
+		std::cerr << e.what() << std::endl;
+		return Fixed();
+	}
+};
 
 Fixed& Fixed::operator++() {
+	if (_FixedNum == INT_MAX)
+	{
+		std::cerr << "Overflow detected" << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
 	_FixedNum += 1;
 	return *this;
 };
 Fixed Fixed::operator++(int) {
+	if (_FixedNum == INT_MAX)
+	{
+		std::cerr << "Overflow detected" << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
 	Fixed temp = *this;
 	_FixedNum += 1;
 	return temp;
 };
 Fixed& Fixed::operator--() {
+	if (_FixedNum == INT_MIN)
+	{
+		std::cerr << "Overflow detected" << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
 	_FixedNum -= 1;
 	return *this;
 };
 Fixed Fixed::operator--(int) {
+	if (_FixedNum == INT_MIN)
+	{
+		std::cerr << "Overflow detected" << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
 	Fixed temp = *this;
 	_FixedNum -= 1;
 	return temp;
@@ -94,3 +182,4 @@ Fixed& Fixed::min(Fixed &a, Fixed &b) { return a < b ? a : b; }
 const Fixed& Fixed::min(const Fixed &a, const Fixed &b) { return a < b ? a : b; }
 Fixed& Fixed::max(Fixed &a, Fixed &b) { return a > b ? a : b; }
 const Fixed& Fixed::max(const Fixed &a, const Fixed &b) { return a > b ? a : b; }
+
