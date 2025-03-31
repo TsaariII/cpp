@@ -18,10 +18,10 @@ void printGrid(Point const &a, Point const &b, Point const &c, Point const &poin
 {
 	int height = 10;
 	int width = 10;
-	std::cout << "Point a has coordinats\nX: " << a.getX() << "\nY: " << a.getY() << std::endl;
-	std::cout << "Point b has coordinats\nX: " << b.getX() << "\nY: " << b.getY() << std::endl;
-	std::cout << "Point c has coordinats\nX: " << c.getX() << "\nY: " << c.getY() << std::endl;
-	std::cout << "Point point has coordinats\nX: " << point.getX() << "\nY: " << point.getY() << std::endl;
+	std::cout << "Point a has coordinates\nX: " << a.getX() << "\nY: " << a.getY() << std::endl;
+	std::cout << "Point b has coordinates\nX: " << b.getX() << "\nY: " << b.getY() << std::endl;
+	std::cout << "Point c has coordinates\nX: " << c.getX() << "\nY: " << c.getY() << std::endl;
+	std::cout << "Point point has coordinates\nX: " << point.getX() << "\nY: " << point.getY() << std::endl;
 	std::cout << "\n\tGrid\n" << std::endl;
 	for (int y = height; y >= 0; y--)
 	{

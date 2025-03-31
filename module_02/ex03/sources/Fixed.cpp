@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:45:01 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/28 16:36:18 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/31 10:27:04 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ Fixed Fixed::operator+(const Fixed &copy) const
 	try {
 		float result = this->toFloat() + copy.toFloat();
 		float scaled = result * (1 << _FractBits);
-		if (scaled > INT_MAX || scaled < INT_MIN)
+		if (scaled > static_cast<float>(INT_MAX) || scaled < static_cast<float>(INT_MIN))
 			throw std::overflow_error("Overflow detected");
 		return Fixed(result);
 	}
@@ -93,7 +93,7 @@ Fixed Fixed::operator-(const Fixed &copy) const
 	try {
 		float result = this->toFloat() - copy.toFloat();
 		float scaled = result * (1 << _FractBits);
-		if (scaled > INT_MAX || scaled < INT_MIN)
+		if (scaled > static_cast<float>(INT_MAX) || scaled < static_cast<float>(INT_MIN))
 			throw std::overflow_error("Overflow detected");
 		return Fixed(result);
 	}
@@ -107,7 +107,7 @@ Fixed Fixed::operator*(const Fixed &copy) const
 	try {
 		float result = this->toFloat() * copy.toFloat();
 		float scaled = result * (1 << _FractBits);
-		if (scaled > INT_MAX || scaled < INT_MIN)
+		if (scaled > static_cast<float>(INT_MAX) || scaled < static_cast<float>(INT_MIN))
 			throw std::overflow_error("Overflow detected");
 		return Fixed(result);
 	}
@@ -122,7 +122,7 @@ Fixed Fixed::operator/(const Fixed &copy) const {
 			return Fixed(this->_FixedNum);
 		float result = this->toFloat() + copy.toFloat();
 		float scaled = result * (1 << _FractBits);
-		if (scaled > INT_MAX || scaled < INT_MIN)
+		if (scaled > static_cast<float>(INT_MAX) || scaled < static_cast<float>(INT_MIN))
 			throw std::overflow_error("Overflow detected");
 		return Fixed(result);
 	}
@@ -141,6 +141,7 @@ Fixed& Fixed::operator++() {
 	_FixedNum += 1;
 	return *this;
 };
+
 Fixed Fixed::operator++(int) {
 	if (_FixedNum == INT_MAX)
 	{
@@ -151,6 +152,7 @@ Fixed Fixed::operator++(int) {
 	_FixedNum += 1;
 	return temp;
 };
+
 Fixed& Fixed::operator--() {
 	if (_FixedNum == INT_MIN)
 	{
@@ -160,6 +162,7 @@ Fixed& Fixed::operator--() {
 	_FixedNum -= 1;
 	return *this;
 };
+
 Fixed Fixed::operator--(int) {
 	if (_FixedNum == INT_MIN)
 	{
@@ -170,6 +173,7 @@ Fixed Fixed::operator--(int) {
 	_FixedNum -= 1;
 	return temp;
 };
+
 Fixed& Fixed::min(Fixed &a, Fixed &b) { return a < b ? a : b; }
 const Fixed& Fixed::min(const Fixed &a, const Fixed &b) { return a < b ? a : b; }
 Fixed& Fixed::max(Fixed &a, Fixed &b) { return a > b ? a : b; }
