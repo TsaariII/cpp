@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:45:01 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/03/28 16:36:07 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/03/31 10:20:08 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ Fixed Fixed::operator+(const Fixed &copy) const
 	try {
 		float result = this->toFloat() + copy.toFloat();
 		float scaled = result * (1 << _FractBits);
-		if (scaled > INT_MAX || scaled < INT_MIN)
+		if (scaled > static_cast<float>(INT_MAX) || scaled < static_cast<float>(INT_MIN))
 			throw std::overflow_error("Overflow detected");
 		return Fixed(result);
 	}
@@ -100,7 +100,7 @@ Fixed Fixed::operator-(const Fixed &copy) const
 	try {
 		float result = this->toFloat() - copy.toFloat();
 		float scaled = result * (1 << _FractBits);
-		if (scaled > INT_MAX || scaled < INT_MIN)
+		if (scaled > static_cast<float>(INT_MAX) || scaled < static_cast<float>(INT_MIN))
 			throw std::overflow_error("Overflow detected");
 		return Fixed(result);
 	}
@@ -114,7 +114,7 @@ Fixed Fixed::operator*(const Fixed &copy) const
 	try {
 		float result = this->toFloat() * copy.toFloat();
 		float scaled = result * (1 << _FractBits);
-		if (scaled > INT_MAX || scaled < INT_MIN)
+		if (scaled > static_cast<float>(INT_MAX) || scaled < static_cast<float>(INT_MIN))
 			throw std::overflow_error("Overflow detected");
 		return Fixed(result);
 	}
@@ -129,7 +129,7 @@ Fixed Fixed::operator/(const Fixed &copy) const {
 			return Fixed(this->_FixedNum);
 		float result = this->toFloat() + copy.toFloat();
 		float scaled = result * (1 << _FractBits);
-		if (scaled > INT_MAX || scaled < INT_MIN)
+		if (scaled > static_cast<float>(INT_MAX) || scaled < static_cast<float>(INT_MIN))
 			throw std::overflow_error("Overflow detected");
 		return Fixed(result);
 	}
