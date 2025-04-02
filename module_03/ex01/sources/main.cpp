@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-31 13:46:41 by nzharkev          #+#    #+#             */
-/*   Updated: 2025-03-31 13:46:41 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/03/31 13:46:41 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/04/02 14:41:11 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ClapTrap.hpp"
+#include "../includes/ScavTrap.hpp"
 
 int main()
 {
-    ClapTrap a("Chap");
-    ClapTrap b("Chad");
+    ScavTrap a("Chap");
+    ScavTrap b("Chad");
 
     a.attack("Chad");
     b.takeDamage(5);

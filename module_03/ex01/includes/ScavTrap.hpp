@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-31 14:08:22 by nzharkev          #+#    #+#             */
-/*   Updated: 2025-03-31 14:08:22 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/03/31 14:08:22 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/04/02 14:34:56 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 class ScavTrap : public ClapTrap
 {
+    private:
+        bool _OnDuty;
     public:
         ScavTrap();
         ScavTrap(std::string name);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-31 10:00:57 by nzharkev          #+#    #+#             */
-/*   Updated: 2025-03-31 10:00:57 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/03/31 10:00:57 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/04/02 14:30:44 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ ClapTrap::ClapTrap(const ClapTrap &copy) : _Name(copy._Name), _HitPoint(copy._Hi
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &copy) {
-    std::cout << "Assignament operator called" << std::endl;
+    std::cout << "ClapTrap assignament operator called" << std::endl;
     this->_Name = copy._Name;
     this->_HitPoint = copy._HitPoint;
     this->_EnergyPoint = copy._EnergyPoint;    
