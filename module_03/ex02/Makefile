@@ -1,5 +1,5 @@
 
-NAME = scavtrap
+NAME = fragtrap
 
 SRC_DIR = sources
 
