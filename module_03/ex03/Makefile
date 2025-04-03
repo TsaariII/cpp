@@ -1,11 +1,13 @@
 
-NAME = scavTrap
+NAME = diamondTrap
 
 SRC_DIR = sources
 
 SRC = $(SRC_DIR)/main.cpp\
 	$(SRC_DIR)/ClapTrap.cpp\
+	$(SRC_DIR)/FragTrap.cpp\
 	$(SRC_DIR)/ScavTrap.cpp\
+	$(SRC_DIR)/DiamondTrap.cpp\
 
 
 OBJ_DIR = objects
@@ -14,7 +16,7 @@ OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 COMP = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++20
+CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++20
 
 all: $(NAME)
 

@@ -1,11 +1,11 @@
 
-NAME = fragtrap
+NAME = fragTrap
 
 SRC_DIR = sources
 
 SRC = $(SRC_DIR)/main.cpp\
 	$(SRC_DIR)/ClapTrap.cpp\
-	$(SRC_DIR)/ScavTrap.cpp\
+	$(SRC_DIR)/FragTrap.cpp\
 
 
 OBJ_DIR = objects

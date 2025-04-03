@@ -6,52 +6,48 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 14:13:00 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/02 16:42:38 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:39:16 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap("Default")
+ScavTrap::ScavTrap() : ClapTrap()
 {
-    _HitPoint = 100;
-    _EnergyPoint = 50;
-    _Attack = 20;
-    std::cout << "Constructed default ClapTrap named " << _Name << std::endl;
+    std::cout << "\033[3;34mConstructed default ScavTrap named " << _Name << "\033[0m" << std::endl;
+    _OnDuty = false;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
+    std::cout << "\033[3;36mConstructed ScavTrap named " << _Name << "\033[0m" << std::endl;
     _OnDuty = false;
-    _HitPoint = 100;
-    _EnergyPoint = 50;
-    _Attack = 20;
-    std::cout << "Constructed ClapTrap named " << _Name << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy) { std::cout << "Constructed copy Claptrap named" << _Name << std::endl; }
+ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy) { std::cout << "\033[3;94mConstructed copy Scavtrap named " << _Name << "\033[0m" << std::endl; }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &copy)
 {
-    std::cout << "ScavTrap assignament operator called" << std::endl;
+    std::cout << "\033[3;33mScavTrap assignament operator called\033[0m" << std::endl;
     ClapTrap::operator=(copy);
     return *this;
 }
 
-ScavTrap::~ScavTrap() { std::cout << "Destructed ScavTrap named " << _Name << std::endl; }
+ScavTrap::~ScavTrap() { std::cout << "\033[3;31mDestructed ScavTrap named " << _Name << "\033[0m" << std::endl; }
 
 void ScavTrap::attack(const std::string &target)
 {
     if (_HitPoint > 0 && _EnergyPoint > 0)
     {
-        std::cout << "ClapTrap " << _Name << " attacks " <<  target
-                << " , causing " << _Attack << " points of damage!"
+        std::cout << "\033[3;96mScavTrap " << _Name << " attacks " <<  target
+                << ", causing " << _Attack << " points of damage!\033[0m"
                 << std::endl;
+        _EnergyPoint--;
     }
     else if (_EnergyPoint == 0)
-        std::cout << "ClapTrap " << _Name << " has no energy to attack!" << std::endl;
+        std::cout << "\033[3;96;41mScavTrap " << _Name << " has no energy to attack!\033[0m" << std::endl;
     else
-        std::cout << "ClapTrap " << _Name << " could't attack!" << std::endl;
+        std::cout << "\033[3mScavTrap " << _Name << " could't attack!\033[0m" << std::endl;
 }
 
 void ScavTrap::guardGate()
@@ -60,13 +56,13 @@ void ScavTrap::guardGate()
     {
         if (_HitPoint > 0 && _EnergyPoint > 0)
         {
-            std::cout << "ScavTrap " << _Name << " is guarding the gate" << std::endl;
+            std::cout << "\033[3;97mScavTrap " << _Name << " is guarding the gate\033[0m" << std::endl;
             _OnDuty = true;
             _EnergyPoint--;
         }
         else
-            std::cout << "Reason we don't know ScavTrap " << _Name << " can't bother to to gurad gate" << std::endl;
+            std::cout << "\033[3;95mReasons we don't know ScavTrap " << _Name << " can't bother to to gurad gate\033[0m" << std::endl;
     }
     else
-        std::cout << "ScavTrap " << _Name << " is already on duty" << std::endl;
+        std::cout << "\033[3;37mScavTrap " << _Name << " is already on duty\033[0m" << std::endl;
 }

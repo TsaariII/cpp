@@ -6,13 +6,13 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 10:00:57 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 14:02:37 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:02:22 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _Name("Name"), _HitPoint(100), _EnergyPoint(50), _Attack(30) {
+ClapTrap::ClapTrap() : _Name("Cname"), _HitPoint(100), _EnergyPoint(50), _Attack(30) {
     std::cout << "\033[34mConstructed default ClapTrap named " << _Name << "\033[0m" << std::endl;
 }
 

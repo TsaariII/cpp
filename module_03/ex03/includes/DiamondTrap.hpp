@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 09:51:52 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 11:52:25 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/04/03 13:09:11 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/04/03 13:19:15 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <string>
-#include <iostream>
 
-class ClapTrap
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
+
+class DiamondTrap : public ScavTrap, public FragTrap
 {
-    protected:
+    private:
         std::string _Name;
-        int _HitPoint;
-        int _EnergyPoint;
-        int _Attack;
     public:
-        ClapTrap();
-        ClapTrap(std::string name);
-        ClapTrap(const ClapTrap &copy);
-        ClapTrap &operator=(const ClapTrap &copy);
-        ~ClapTrap();
-        void attack(const std::string& target);
-        void takeDamage(unsigned int amount);
-        void beRepaired(unsigned int amount);
+        DiamondTrap();
+        DiamondTrap(std::string name);
+        DiamondTrap(const DiamondTrap &copy);
+        DiamondTrap &operator=(const DiamondTrap &copy);
+        ~DiamondTrap();
+        void whoAmI();
+        using ScavTrap::attack;
 };

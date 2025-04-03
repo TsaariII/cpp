@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 14:08:22 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/02 14:34:56 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/04/02 16:54:09 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/04/03 13:21:29 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
-    private:
-        bool _OnDuty;
     public:
-        ScavTrap();
-        ScavTrap(std::string name);
-        ScavTrap(const ScavTrap &copy);
-        ScavTrap &operator=(const ScavTrap &copy);
-        ~ScavTrap();
+        FragTrap();
+        FragTrap(std::string name);
+        FragTrap(const FragTrap &copy);
+        FragTrap &operator=(const FragTrap &copy);
+        ~FragTrap();
         void attack(const std::string &target);
-        void guardGate();
+        void highFivesGuys(void);
 };
