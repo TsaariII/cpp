@@ -24,12 +24,16 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
     _OnDuty = false;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy) { std::cout << "\033[3;94mConstructed copy Scavtrap named " << _Name << "\033[0m" << std::endl; }
+ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy), _OnDuty(copy._OnDuty)
+{
+    std::cout << "\033[3;94mConstructed copy Scavtrap named " << _Name << "\033[0m" << std::endl;
+}
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &copy)
 {
     std::cout << "\033[3;33mScavTrap assignament operator called\033[0m" << std::endl;
     ClapTrap::operator=(copy);
+    _OnDuty = copy._OnDuty;
     return *this;
 }
 
@@ -47,7 +51,7 @@ void ScavTrap::attack(const std::string &target)
     else if (_EnergyPoint == 0)
         std::cout << "\033[3;96;41mScavTrap " << _Name << " has no energy to attack!\033[0m" << std::endl;
     else
-        std::cout << "\033[3mScavTrap " << _Name << " could't attack!\033[0m" << std::endl;
+        std::cout << "\033[3mScavTrap " << _Name << " couldn't attack!\033[0m" << std::endl;
 }
 
 void ScavTrap::guardGate()
@@ -61,7 +65,7 @@ void ScavTrap::guardGate()
             _EnergyPoint--;
         }
         else
-            std::cout << "\033[3;95mReasons we don't know ScavTrap " << _Name << " can't bother to to gurad gate\033[0m" << std::endl;
+            std::cout << "\033[3;95mReasons we don't know ScavTrap " << _Name << " can't bother to guard gate\033[0m" << std::endl;
     }
     else
         std::cout << "\033[3;37mScavTrap " << _Name << " is already on duty\033[0m" << std::endl;

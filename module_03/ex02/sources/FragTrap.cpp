@@ -39,7 +39,7 @@ void FragTrap::attack(const std::string &target)
     else if (_EnergyPoint == 0)
         std::cout << "\033[1;96;41mFragTrap " << _Name << " has no energy to attack!\033[0m" << std::endl;
     else
-        std::cout << "\033[1mFragTrap " << _Name << " could't attack!\033[0m" << std::endl;
+        std::cout << "\033[1mFragTrap " << _Name << " couldn't attack!\033[0m" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)

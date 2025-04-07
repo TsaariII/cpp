@@ -12,12 +12,12 @@
 
 #include "../includes/DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap(), _Name("Dname")
+DiamondTrap::DiamondTrap() : ClapTrap("Dname_clap_name"), _Name("Dname")
 {
     std::cout << "\033[4;34mConstructed default DiamondTrap named " << _Name << "\033[0m" << std::endl;
     _HitPoint = FragTrap::_HitPoint;
     _EnergyPoint = ScavTrap::_EnergyPoint;
-    _Attack = ScavTrap::_Attack;
+    _Attack = FragTrap::_Attack;
 }
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), _Name(name)
 {

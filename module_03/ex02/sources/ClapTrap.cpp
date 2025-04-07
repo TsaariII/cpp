@@ -49,7 +49,7 @@ void ClapTrap::attack(const std::string& target) {
     else if (_EnergyPoint == 0)
         std::cout << "\033[1;96;41mClapTrap " << _Name << " has no energy to attack!\033[0m" << std::endl;
     else
-        std::cout << "ClapTrap " << _Name << " could't attack!" << std::endl; 
+        std::cout << "ClapTrap " << _Name << " couldn't attack!" << std::endl; 
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
@@ -74,10 +74,10 @@ void ClapTrap::takeDamage(unsigned int amount) {
 
 void ClapTrap::beRepaired(unsigned int amount) {
     if (_EnergyPoint == 0)
-        std::cout << "\033[33mNo energy to repair\033[0m" << std::endl;
+        std::cout << "\033[33mClapTrap has no energy to repair\033[0m" << std::endl;
     else if (_HitPoint == 100)
     {
-        std::cout << "\033[90;42mHitpoints are at full amount\033[0m" << std::endl;
+        std::cout << "\033[90;42mClapTraps hitpoints are at full amount\033[0m" << std::endl;
         return ;
     }
     if (_EnergyPoint > 0 && _HitPoint > 0)
