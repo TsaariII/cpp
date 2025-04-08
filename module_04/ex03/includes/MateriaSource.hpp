@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 14:20:51 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 15:17:20 by nzharkev         ###   ########.fr       */
+/*   Created: 2025-04-08 13:46:08 by nzharkev          #+#    #+#             */
+/*   Updated: 2025-04-08 13:46:08 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "IMateriaSource.hpp"
 
-#include "Animal.hpp"
-
-class Dog : public Animal
+class MateriaSource : public IMateriaSource
 {
     public:
-        Dog();
-        Dog(std::string type);
-        Dog(const Dog &copy);
-        Dog &operator=(const Dog &copy);
-        ~Dog();
-        void makeSound() const;
-    
+        MateriaSource();
+        MateriaSource(MateriaSource &copy);
+        MateriaSource& operator=(const MateriaSource &copy);
+        ~MateriaSource();
 };

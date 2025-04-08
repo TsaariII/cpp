@@ -13,9 +13,12 @@
 #pragma once
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Dog : public Animal
 {
+    private:
+        Brain* _Brain;
     public:
         Dog();
         Dog(std::string type);
@@ -23,5 +26,7 @@ class Dog : public Animal
         Dog &operator=(const Dog &copy);
         ~Dog();
         void makeSound() const;
-    
+        Brain* getBrain() const { return _Brain; }
+        // const std::string& getIdea(int i) const;
+        // void setIdea(int i, const std::string& idea);
 };

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cat.hpp"
+#include "../includes/WrongCat.hpp"
 
-Cat::Cat() { std::cout << "Default cat was created" << std::endl; _Type = "Cat"; }
-Cat::Cat(std::string type)  { std::cout << "Created " << getType()  << std::endl; _Type = type; }
-Cat::Cat(const Cat &copy) {  std::cout << "Created copy of " << getType()  << std::endl; _Type = copy._Type; }
-Cat& Cat::operator=(const Cat &copy)
+WrongCat::WrongCat() { std::cout << "Default wrong cat was created" << std::endl; _Type = "WrongCat"; }
+WrongCat::WrongCat(std::string type)  { std::cout << "Created " << getType()  << std::endl; _Type = type; }
+WrongCat::WrongCat(const WrongCat &copy) {  std::cout << "Created copy of " << getType()  << std::endl; _Type = copy._Type; }
+WrongCat& WrongCat::operator=(const WrongCat &copy)
 {
     std::cout << "Assigned " << getType()  << std::endl;
     if (this != &copy)
         _Type = copy._Type;
     return *this;
 }
-Cat::~Cat() { std::cout << getType() << " was wiped from the face of Earth"  << std::endl; }
-void Cat::makeSound() const { std::cout << "meow" << std::endl; }
+WrongCat::~WrongCat() { std::cout << getType() << " was wiped from the face of Earth"  << std::endl; }
+void WrongCat::makeSound() const { std::cout << "WUFF WUFF" << std::endl; } 

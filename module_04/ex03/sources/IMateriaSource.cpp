@@ -1,26 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   IMateriaSource.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 14:20:51 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 15:17:26 by nzharkev         ###   ########.fr       */
+/*   Created: 2025-04-08 13:43:06 by nzharkev          #+#    #+#             */
+/*   Updated: 2025-04-08 13:43:06 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/IMateriaSource.hpp"
 
-#include "Animal.hpp"
-
-class Cat : public Animal
-{
-    public:
-        Cat();
-        Cat(std::string type);
-        Cat(const Cat &copy);
-        Cat &operator=(const Cat &copy);
-        ~Cat();
-        void makeSound() const;
-};
+IMateriaSource::~IMateriaSource() {}

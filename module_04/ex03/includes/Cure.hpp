@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 14:20:51 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 15:17:20 by nzharkev         ###   ########.fr       */
+/*   Created: 2025-04-08 12:48:06 by nzharkev          #+#    #+#             */
+/*   Updated: 2025-04-08 12:48:06 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "AMateria.hpp"
 
-#include "Animal.hpp"
-
-class Dog : public Animal
+class Cure : public AMateria
 {
     public:
-        Dog();
-        Dog(std::string type);
-        Dog(const Dog &copy);
-        Dog &operator=(const Dog &copy);
-        ~Dog();
-        void makeSound() const;
-    
+
+        Cure();
+        Cure(const Cure &copy);
+        Cure& operator=(const Cure &copy);
+        ~Cure();
+        virtual AMateria* clone() const;
 };

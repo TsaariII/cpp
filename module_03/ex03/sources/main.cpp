@@ -166,9 +166,9 @@ void testsZeroEnergy()
     DiamondTrap d;
     d = b;
     std::cout << "The attack until there is no energy left:" << std::endl;
-    for(int i = 0; i <= 50; i++)
+    for(int i = 0; i <= 100; i++)
     {
-        std::cout << "Energy: " << (50 - i) << std::endl;
+        std::cout << "Energy: " << (100 - i) << std::endl;
         std::cout << "A: ";
         a.attack("Guy");
         std::cout << "B: ";

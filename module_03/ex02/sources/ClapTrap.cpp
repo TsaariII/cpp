@@ -12,11 +12,11 @@
 
 #include "../includes/ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _Name("Name"), _HitPoint(100), _EnergyPoint(50), _Attack(30) {
+ClapTrap::ClapTrap() : _Name("Name"), _HitPoint(100), _EnergyPoint(100), _Attack(30) {
     std::cout << "\033[34mConstructed default ClapTrap named " << _Name << "\033[0m" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _Name(name), _HitPoint(100), _EnergyPoint(50), _Attack(20) {
+ClapTrap::ClapTrap(std::string name) : _Name(name), _HitPoint(100), _EnergyPoint(100), _Attack(30) {
     std::cout << "\033[36mConstructed ClapTrap named " << _Name << "\033[0m" << std::endl;
 }
 

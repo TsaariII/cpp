@@ -149,8 +149,8 @@ void testsZeroEnergy()
 
 int main()
 {
-    basicTests();
-    // testsWhenDead();
+    // basicTests();
+    testsWhenDead();
     // testsZeroEnergy();
     return 0;
 }

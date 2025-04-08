@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 14:20:51 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 15:17:26 by nzharkev         ###   ########.fr       */
+/*   Created: 2025-04-08 13:54:38 by nzharkev          #+#    #+#             */
+/*   Updated: 2025-04-08 13:54:38 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/MateriaSource.hpp"
 
-#include "Animal.hpp"
-
-class Cat : public Animal
-{
-    public:
-        Cat();
-        Cat(std::string type);
-        Cat(const Cat &copy);
-        Cat &operator=(const Cat &copy);
-        ~Cat();
-        void makeSound() const;
-};
+MateriaSource::MateriaSource() {}
+MateriaSource::MateriaSource(MateriaSource &copy) {}
+MateriaSource& MateriaSource::operator=(const MateriaSource &copy) {}
+MateriaSource::~MateriaSource() {}

@@ -13,37 +13,34 @@
 #include "../includes/Animal.hpp"
 #include "../includes/Cat.hpp"
 #include "../includes/Dog.hpp"
-
+#include "../includes/WrongAnimal.hpp"
+#include "../includes/WrongCat.hpp"
 
 int main()
 {
-    // {
-    //     const Animal* meta = new Animal();
-    //     const Animal* j = new Dog();
-    //     const Animal* i = new Cat();
-    //     std::cout << j->getType() << " " << std::endl;
-    //     std::cout << i->getType() << " " << std::endl;
-    //     i->makeSound();
-    //     j->makeSound();
-    //     meta->makeSound();
-    
-    //     delete meta;    
-    //     delete i;
-    //     delete j;
-    // }
     {
-        const Animal *a = new Animal();
-        const Animal *b = new Cat();
-        const Animal *c = new Dog();
-        const Animal *d(c);
-        std::cout << a->getType() << " " << std::endl;
-        std::cout << b->getType() << " " << std::endl;
-        std::cout << c->getType() << " " << std::endl;
-        std::cout << d->getType() << " " << std::endl;
-        delete a;
-        delete b;
-        delete c;
-        delete d;
+        const Animal* meta = new Animal();
+        const Animal* j = new Dog();
+        const Animal* i = new Cat();
+        std::cout << j->getType() << " " << std::endl;
+        std::cout << i->getType() << " " << std::endl;
+        i->makeSound();
+        j->makeSound();
+        meta->makeSound();
+    
+        delete meta;    
+        delete i;
+        delete j;
+    }
+    {
+        const WrongAnimal* meta = new WrongAnimal();
+        const WrongAnimal* j = new WrongCat();
+        std::cout << j->getType() << " " << std::endl;
+        j->makeSound();
+        meta->makeSound();
+    
+        delete meta;    
+        delete j;
     }
     return 0;  
 }

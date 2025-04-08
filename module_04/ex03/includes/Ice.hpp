@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 14:20:51 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 15:17:20 by nzharkev         ###   ########.fr       */
+/*   Created: 2025-04-08 12:15:01 by nzharkev          #+#    #+#             */
+/*   Updated: 2025-04-08 12:15:01 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "AMateria.hpp"
 
-#include "Animal.hpp"
-
-class Dog : public Animal
+class Ice : public AMateria
 {
+    protected:
+        std::string _Type;
     public:
-        Dog();
-        Dog(std::string type);
-        Dog(const Dog &copy);
-        Dog &operator=(const Dog &copy);
-        ~Dog();
-        void makeSound() const;
-    
+        Ice();
+        Ice(const Ice &copy);
+        Ice& operator=(const Ice &copy);
+        ~Ice();
+        virtual AMateria* clone() const;
 };

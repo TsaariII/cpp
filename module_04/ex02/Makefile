@@ -5,6 +5,7 @@ SRC_DIR = sources
 
 SRC = $(SRC_DIR)/main.cpp\
 	$(SRC_DIR)/Animal.cpp\
+	$(SRC_DIR)/Brain.cpp\
 	$(SRC_DIR)/Cat.cpp\
 	$(SRC_DIR)/Dog.cpp\
 	$(SRC_DIR)/WrongAnimal.cpp\
