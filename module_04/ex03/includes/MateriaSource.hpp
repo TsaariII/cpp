@@ -15,9 +15,13 @@
 
 class MateriaSource : public IMateriaSource
 {
+    private:
+        AMateria* _Materias[4];
     public:
         MateriaSource();
         MateriaSource(MateriaSource &copy);
         MateriaSource& operator=(const MateriaSource &copy);
         ~MateriaSource();
+        void learnMateria(AMateria* materia) override;
+        AMateria* createMateria(std::string const & type) override;
 };

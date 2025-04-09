@@ -12,4 +12,4 @@
 
 #include "../includes/ICharacter.hpp"
 
-ICharacter::~ICharacter() {}
+// ICharacter::~ICharacter() {}

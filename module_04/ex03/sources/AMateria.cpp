@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/AMateria.hpp"
+#include "../includes/ICharacter.hpp"
 
 AMateria::AMateria() : _Type("materia") {}
 AMateria::AMateria(std::string const &type) : _Type(type) {}
@@ -26,10 +27,12 @@ AMateria& AMateria::operator=(const AMateria &copy)
 }
 AMateria::~AMateria() {}
 
+std::string AMateria::getType() { return _Type; }
+
 void AMateria::use(ICharacter &target)
 {
     if (_Type == "ice")
         std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-    else
+    else if (_Type == "cure")
         std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

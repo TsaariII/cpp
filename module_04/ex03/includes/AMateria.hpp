@@ -13,7 +13,8 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria
 {
@@ -24,7 +25,8 @@ class AMateria
         AMateria(std::string const &type);
         AMateria(const AMateria &copy);
         AMateria& operator=(const AMateria &copy);
-        ~AMateria();
+        virtual ~AMateria();
+        std::string getType();
         virtual AMateria* clone() const = 0;
         virtual void use(ICharacter &target);
 };
