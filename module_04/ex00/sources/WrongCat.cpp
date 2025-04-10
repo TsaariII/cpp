@@ -22,5 +22,5 @@ WrongCat& WrongCat::operator=(const WrongCat &copy)
         _Type = copy._Type;
     return *this;
 }
-WrongCat::~WrongCat() { std::cout << getType() << " was wiped from the face of Earth"  << std::endl; }
+WrongCat::~WrongCat() { std::cout << "WrongCat was wiped from the face of Earth"  << std::endl; }
 void WrongCat::makeSound() const { std::cout << "WUFF WUFF" << std::endl; } 

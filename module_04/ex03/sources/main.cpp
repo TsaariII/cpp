@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-04-08 12:24:46 by nzharkev          #+#    #+#             */
-/*   Updated: 2025-04-08 12:24:46 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/04/08 12:24:46 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/04/10 15:52:28 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,13 @@ int main()
         a->equip(ice);
         a->equip(cure);
         AMateria *floor[100];
-        floor[0] = ice;
-        a->unequip(0);
+        floor[0] = cure;
+        a->unequip(1);
+        ICharacter* bob = new Character("BOB");
+        a->use(1, *bob);
+        a->use(0, *bob);
         delete a;
+        delete bob;
         delete src;
         delete floor[0];
     }

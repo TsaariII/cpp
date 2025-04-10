@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:48:44 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 16:37:00 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:33:50 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ int main()
         }
         for (int i = 0; i < size; i++)
             pets[i]->makeSound();
+        std::cout << "Destructor:" << std::endl;
         for (int i = 0; i <  size; i++)
             delete pets[i];
     }
+    std::cout << "\t**********************" << std::endl;
     {
         Dog a;
         Dog b(a);
@@ -53,7 +55,9 @@ int main()
             std::cout << "Idea " << i << ": " << a.getBrain()->getIdea(i) << std::endl;
             std::cout << "Idea " << i << ": " << b.getBrain()->getIdea(i) << std::endl;
         }
+        std::cout << "Destructor:" << std::endl;
     }
+    std::cout << "\t**********************" << std::endl;
     {
         Cat a;
         Cat b(a);
@@ -68,6 +72,8 @@ int main()
             std::cout << "Idea " << i << ": " << a.getBrain()->getIdea(i) << std::endl;
             std::cout << "Idea " << i << ": " << b.getBrain()->getIdea(i) << std::endl;
         }
+        std::cout << "Destructor:" << std::endl;
     }
+    std::cout << "\t**********************" << std::endl;
     return 0;  
 }

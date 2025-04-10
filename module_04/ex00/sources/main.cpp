@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:48:44 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 16:37:00 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:57:47 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int main()
         std::cout << j->getType() << " " << std::endl;
         j->makeSound();
         meta->makeSound();
-    
         delete meta;    
         delete j;
     }

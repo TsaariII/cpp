@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:52:12 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 15:21:44 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:52:14 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ Dog& Dog::operator=(const Dog &copy)
         _Type = copy._Type;
     return *this;
 }
-Dog::~Dog() { std::cout << getType() << " was wiped from the face of Earth"  << std::endl; }
+Dog::~Dog() { std::cout << "Dog was wiped from the face of Earth"  << std::endl; }
 void Dog::makeSound() const { std::cout << "WUFF!! WUFF!!!" << std::endl; }

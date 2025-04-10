@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:51:21 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/03 15:20:23 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:52:04 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ Cat& Cat::operator=(const Cat &copy)
         _Type = copy._Type;
     return *this;
 }
-Cat::~Cat() { std::cout << getType() << " was wiped from the face of Earth"  << std::endl; }
+Cat::~Cat() { std::cout << "Cat was wiped from the face of Earth"  << std::endl; }
 void Cat::makeSound() const { std::cout << "meow" << std::endl; }

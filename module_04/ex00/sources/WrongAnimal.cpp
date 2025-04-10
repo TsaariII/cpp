@@ -22,6 +22,6 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal &copy)
         _Type = copy._Type;
     return *this;
 }
-WrongAnimal::~WrongAnimal() { std::cout << getType() << " was wiped from the face of Earth"  << std::endl; }
+WrongAnimal::~WrongAnimal() { std::cout << "WrongAnimal was wiped from the face of Earth"  << std::endl; }
 std::string WrongAnimal::getType() const { return this->_Type; }
 void WrongAnimal::makeSound() const { std::cout << "Generic WrongAnimal sounds" << std::endl; }

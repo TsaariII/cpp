@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-04-08 13:04:32 by nzharkev          #+#    #+#             */
-/*   Updated: 2025-04-08 13:04:32 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/04/08 13:04:32 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/04/10 15:51:45 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
