@@ -40,6 +40,7 @@ int main()
         for (int i = 0; i <  size; i++)
             delete pets[i];
     }
+    std::cout << "\t**********************" << std::endl;
     {
         Dog a;
         Dog b(a);
@@ -51,10 +52,12 @@ int main()
         b.getBrain()->setIdea(2, "Lay");
         for (int i = 0; i < 3; i++)
         {
-            std::cout << "Idea " << i << ": " << a.getBrain()->getIdea(i) << std::endl;
-            std::cout << "Idea " << i << ": " << b.getBrain()->getIdea(i) << std::endl;
+            std::cout << "Idea original " << i << ": " << a.getBrain()->getIdea(i) << std::endl;
+            std::cout << "Idea copy " << i << ": " << b.getBrain()->getIdea(i) << std::endl;
         }
+        std::cout << "Destructor:" << std::endl;
     }
+    std::cout << "\t**********************" << std::endl;
     {
         Cat a;
         Cat b(a);
@@ -69,6 +72,8 @@ int main()
             std::cout << "Idea " << i << ": " << a.getBrain()->getIdea(i) << std::endl;
             std::cout << "Idea " << i << ": " << b.getBrain()->getIdea(i) << std::endl;
         }
+        std::cout << "Destructor:" << std::endl;
     }
+    std::cout << "\t**********************" << std::endl;
     return 0;  
 }

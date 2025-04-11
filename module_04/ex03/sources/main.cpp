@@ -35,20 +35,34 @@ int main()
         delete src;
     }
     {
+        std::cout << "\tMY TESTS" << std::endl;
+        std::cout << "Hero created" << std::endl;
         Character *a = new Character("Hero");
+        std::cout << "Creating materia pool" << std::endl;
         MateriaSource* src = new MateriaSource();
+        std::cout << "Creating cure materia" << std::endl;
         src->learnMateria(new Cure());
+        std::cout << "Added Ice materia" << std::endl;
         src->learnMateria(new Ice());
+        std::cout << "Add cure to materia pool" << std::endl;
         AMateria *ice = src->createMateria("ice");
+        std::cout << "Add cure to materia pool" << std::endl;
         AMateria *cure = src->createMateria("cure");
+        std::cout << "Hero equipped ice" << std::endl;
         a->equip(ice);
+        std::cout << "Hero equipped cure" << std::endl;
         a->equip(cure);
         AMateria *floor[100];
+        std::cout << "Hero unequipped cure" << std::endl;
         floor[0] = cure;
         a->unequip(1);
+        std::cout << "Created target for Hero named BOB" << std::endl;
         ICharacter* bob = new Character("BOB");
-        a->use(1, *bob);
+        std::cout << "Hero uses ice" << std::endl;
         a->use(0, *bob);
+        std::cout << "Hero forgot that he has cure and tried use it" << std::endl;
+        a->use(1, *bob);
+        std::cout << "GAME OVER" << std::endl;
         delete a;
         delete bob;
         delete src;

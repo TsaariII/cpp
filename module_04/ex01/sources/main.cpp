@@ -52,8 +52,8 @@ int main()
         b.getBrain()->setIdea(2, "Lay");
         for (int i = 0; i < 3; i++)
         {
-            std::cout << "Idea " << i << ": " << a.getBrain()->getIdea(i) << std::endl;
-            std::cout << "Idea " << i << ": " << b.getBrain()->getIdea(i) << std::endl;
+            std::cout << "Idea original " << i << ": " << a.getBrain()->getIdea(i) << std::endl;
+            std::cout << "Idea copy " << i << ": " << b.getBrain()->getIdea(i) << std::endl;
         }
         std::cout << "Destructor:" << std::endl;
     }
@@ -61,18 +61,17 @@ int main()
     {
         Cat a;
         Cat b(a);
-        a.getBrain()->setIdea(0, "Play");
-        a.getBrain()->setIdea(1, "Eat");
-        a.getBrain()->setIdea(2, "Sleep");
-        b.getBrain()->setIdea(0, "Eat");
-        b.getBrain()->setIdea(1, "Sleep");
-        b.getBrain()->setIdea(2, "Lay");
+        a.getBrain()->setIdea(0, "Eat");
+        a.getBrain()->setIdea(1, "Hate humans");
+        a.getBrain()->setIdea(2, "Annoy humans");
+        b.getBrain()->setIdea(0, "Sleep");
+        b.getBrain()->setIdea(1, "Scratch");
+        b.getBrain()->setIdea(2, "Eat");
         for (int i = 0; i < 3; i++)
         {
-            std::cout << "Idea " << i << ": " << a.getBrain()->getIdea(i) << std::endl;
-            std::cout << "Idea " << i << ": " << b.getBrain()->getIdea(i) << std::endl;
+            std::cout << "Idea original " << i << ": " << a.getBrain()->getIdea(i) << std::endl;
+            std::cout << "Idea copy " << i << ": " << b.getBrain()->getIdea(i) << std::endl;
         }
-        std::cout << "Destructor:" << std::endl;
     }
     std::cout << "\t**********************" << std::endl;
     return 0;  
