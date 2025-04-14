@@ -1,9 +1,10 @@
 
-NAME = miniFF
+NAME = bureaucrat
 
 SRC_DIR = sources
 
 SRC = $(SRC_DIR)/main.cpp\
+	$(SRC_DIR)/Bureaucrat.cpp\
 
 OBJ_DIR = objects
 
@@ -20,7 +21,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@$(COMP) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\n\033[0;32mIt's magic!\033[0m\n"
+	@echo "\n\033[0;32mAdministration is in work\033[0m\n"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

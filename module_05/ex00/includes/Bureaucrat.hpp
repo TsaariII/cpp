@@ -13,12 +13,13 @@
 #pragma once
 #include <string>
 #include <stdexcept>
+#include <iostream>
 
 class Bureaucrat
 {
     private:
         const std::string _Name;
-        const int _Grade;
+        int _Grade;
     public:
         Bureaucrat();
         Bureaucrat(std::string name, int grade);
@@ -28,10 +29,18 @@ class Bureaucrat
         class GradeTooHighExecption : public std::exception
         {
             public:
-                const char* what() const throw();
+                const char* what() const noexcept;
+        };
+        class GradeTooLowExecption : public std::exception
+        {
+            public:
+                const char* what() const noexcept;
         };
         std::string getName() const;
         int getGrade() const;
-        void setName(std::string name);
         void setGrade(int grade);
+        void incrementGrade();
+        void decrementGrade();
 };
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& b);
