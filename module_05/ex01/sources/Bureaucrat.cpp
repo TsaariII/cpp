@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
+#include "../includes/Form.hpp"
 
 Bureaucrat::Bureaucrat() : _Name("Basic Brueaucrat"), _Grade(10)
 {
@@ -82,6 +83,24 @@ void Bureaucrat::decrementGrade()
     _Grade++;
     if (_Grade > 150)
         throw GradeTooLowExecption();
+}
+
+void Bureaucrat::signForm(Form &f)
+{
+    if (f.getSigned() == false)
+    {
+        if (this->getGrade() > f.getSignGrade())
+        {
+            std::cout << this->getName() << " couldn't sign the form "
+                      << f.getName() << " because signature grade is higher than grade of " << this->getName() << std::endl;
+            return ;
+        }
+        f.beSigned(*this);
+        std::cout << this->getName() << " signed form " << f.getName() << std::endl;
+        return ;
+    }
+    else
+        std::cout << this->getName() << " couldn't sign the form beacause it's already signed" << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighExecption::what() const noexcept { return "You already reached the top. What else want??"; }
