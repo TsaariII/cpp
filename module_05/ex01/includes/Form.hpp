@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-04-14 08:52:56 by nzharkev          #+#    #+#             */
-/*   Updated: 2025-04-14 08:52:56 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/04/14 08:52:56 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/04/15 13:05:34 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ class Form
         const int _ExeGrade;
     public:
         Form();
-        Form(std::string name, bool signature, int sGrade, int eGrade);
+        Form(std::string name, int sGrade, int eGrade);
         Form(const Form &copy);
         Form& operator=(const Form &copy);
         ~Form();
-        class GradeTooHighExecption : public std::exception
+        class GradeTooHighExeception : public std::exception
         {
             public:
                 const char* what() const noexcept;
         };
-        class GradeTooLowExecption : public std::exception
+        class GradeTooLowExeception : public std::exception
         {
             public:
                 const char* what() const noexcept;
         };
         std::string getName() const;
-        bool getSigned();
+        bool getSigned() const;
         int getSignGrade() const;
         int getExeGrade() const;
         void beSigned(Bureaucrat& b);

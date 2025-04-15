@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-04-11 07:54:05 by nzharkev          #+#    #+#             */
-/*   Updated: 2025-04-11 07:54:05 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/04/11 07:54:05 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/04/15 10:46:55 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int main()
 {
+    Bureaucrat a;
+    Bureaucrat b("Bob", 1);
+    Bureaucrat c("Tim", 150);
+    Bureaucrat d(b);
+    a = c;
     try
     {
-        Bureaucrat a;
-        Bureaucrat b("Bob", 1);
-        Bureaucrat c("Tim", 150);
-        Bureaucrat d(b);
-        a = c;
         std::cout << b.getName() << " did a stupid thing and lost grade" << std::endl;
         b.decrementGrade();
         std::cout << b << std::endl;

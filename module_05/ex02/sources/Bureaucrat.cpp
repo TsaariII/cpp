@@ -6,11 +6,12 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 08:06:21 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/15 13:06:31 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:59:58 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
+#include "../includes/AForm.hpp"
 
 Bureaucrat::Bureaucrat() : _Name("Basic Brueaucrat"), _Grade(10)
 {
@@ -82,6 +83,24 @@ void Bureaucrat::decrementGrade()
     _Grade++;
     if (_Grade > 150)
         throw GradeTooLowExeception();
+}
+
+void Bureaucrat::signAForm(AForm &f)
+{
+    if (f.getSigned() == false)
+    {
+        if (this->getGrade() > f.getSignGrade())
+        {
+            std::cout << this->getName() << " couldn't sign the AForm "
+                      << f.getName() << " because signature grade is higher than grade of " << this->getName() << std::endl;
+            return ;
+        }
+        f.beSigned(*this);
+        std::cout << this->getName() << " signed AForm " << f.getName() << std::endl;
+        return ;
+    }
+    else
+        std::cout << this->getName() << " couldn't sign the AForm beacause it's already signed" << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighExeception::what() const noexcept { return "You already reached the top. What else want??"; }
