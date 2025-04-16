@@ -91,16 +91,22 @@ void Bureaucrat::signAForm(AForm &f)
     {
         if (this->getGrade() > f.getSignGrade())
         {
-            std::cout << this->getName() << " couldn't sign the AForm "
+            std::cout << this->getName() << " couldn't sign the form "
                       << f.getName() << " because signature grade is higher than grade of " << this->getName() << std::endl;
             return ;
         }
         f.beSigned(*this);
-        std::cout << this->getName() << " signed AForm " << f.getName() << std::endl;
+        std::cout << this->getName() << " signed form " << f.getName() << std::endl;
         return ;
     }
     else
-        std::cout << this->getName() << " couldn't sign the AForm beacause it's already signed" << std::endl;
+        std::cout << this->getName() << " couldn't sign the form beacause it's already signed" << std::endl;
+}
+
+void Bureaucrat::executeForm(AForm const & form)
+{
+    form.execute(*this);
+    std::cout << this->getName() << " executed " << form.getName() << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighExeception::what() const noexcept { return "You already reached the top. What else want??"; }

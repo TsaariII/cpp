@@ -36,10 +36,15 @@ class AForm
             public:
                 const char* what() const noexcept;
         };
+        class NotSignedExeception : public std::exception
+        {
+            public:
+                const char* what() const noexcept;
+        };
         std::string getName() const;
         bool getSigned() const;
         int getSignGrade() const;
         int getExeGrade() const;
         void beSigned(Bureaucrat& b);
-        virtual void execute(Bureaucrat const & executor) const;
+        virtual void execute(Bureaucrat const & executor) const = 0;
 };

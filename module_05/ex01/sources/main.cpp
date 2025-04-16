@@ -23,8 +23,8 @@ int main()
     std::cout << "to have name " << a.getName() << " and grade " << a.getGrade() << std::endl;
     std::cout << "\t***********" << std::endl;
     Form aF;
-    Form bF("A21567", false, 20, 10);
-    Form cF("A1452", false, 100, 100);
+    Form bF("A21567", 20, 10);
+    Form cF("A1452", 100, 100);
     Form dF(bF);
     aF = cF;
     try
