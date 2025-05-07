@@ -32,7 +32,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm &c
 {
     if (this != &copy)
         _Target = copy._Target;
-        std::cout << "Copy of form " << copy.getName() << " with name "
+    std::cout << "Copy of form " << copy.getName() << " with name "
         << this->getName() << " for " << _Target
         <<  " created with assignment operator" << std::endl;
     return *this;

@@ -16,6 +16,7 @@
 #include "../includes/RobotomyRequestForm.hpp"
 #include "../includes/ShrubberyCreationForm.hpp"
 #include "../includes/Intern.hpp"
+#include <memory>
 
 int main()
 {
@@ -28,58 +29,31 @@ int main()
     Intern i1;
     Intern i2(i1);
     std::cout << "\t***********" << std::endl;
-    AForm* ppf1;
-    AForm* rrf1;
     try
     {
-        ppf1 = i1.makeForm("presidential pardon", "Oscar");
-        std::cout << b.getName()  << " was handed form " << ppf1->getName() << std::endl;
-        b.signAForm(*ppf1);
-        b.executeForm(*ppf1);
-        std::cout << "\t***********" << std::endl; 
-        rrf1 = i1.makeForm("robotomy request", "Oscar");
+        std::unique_ptr<AForm> ppf1(i1.makeForm("presidential pardon", "Oscar"));
+        std::cout << a.getName()  << " was handed form " << ppf1->getName() << std::endl;
+        a.signAForm(*ppf1);
+        //c.signAForm(*ppf1);
+        a.executeForm(*ppf1);
+        //c.executeForm(*ppf1);
+        std::cout << "\t***********" << std::endl;
+        std::unique_ptr<AForm> rrf1(i1.makeForm("robotomy request", "Oscar"));
         std::cout << b.getName()  << " was handed form " << rrf1->getName() << std::endl;
         b.signAForm(*rrf1);
+        // c.signAForm(*rrf1);
         b.executeForm(*rrf1);
-        std::cout << "\t***********" << std::endl; 
+        std::cout << "\t***********" << std::endl;
+		std::unique_ptr<AForm> scf1(i1.makeForm("shrubbery", "Park"));
+        std::cout << b.getName()  << " was handed form " << scf1->getName() << std::endl;
+        b.signAForm(*scf1);
+        b.executeForm(*scf1);
+		std::cout << "\t***********" << std::endl;
     }
     catch(std::exception& e)
     {
         std::cerr << e.what() << '\n';
         std::cout << "\t***********" << std::endl;
     }
-    delete ppf1;
-    delete rrf1;
     return 0;
 }
-
-/*
-Beraucrat
-    Default
-    Constructor
-    Copy
-    Assignment
-    Sign form
-    Execute form
-President
-    Default
-    Constructor
-    Copy
-    Assignment
-    Sign execption
-    Execute exeception
-Robotomy
-    Default
-    Constructor
-    Copy
-    Assignment
-    Sign execption
-    Execute exeception 
-Shrubbery
-    Default
-    Constructor
-    Copy
-    Assignment
-    Sign execption
-    Execute exeception
-*/
