@@ -46,7 +46,7 @@ AForm* Intern::makeForm(std::string form, std::string target)
 {
     typedef AForm* (*FormList) (std::string);
     FormList forms[3] = { writePPF, writeRRF, writeSCF};
-    std::string list[3] = { "presidential pardon", "robotomy request", "shrubbery" };
+    std::string list[3] = {"presidential pardon", "robotomy request", "shrubbery" };
     for (int i = 0; i < 3; i++)
     {
         if (form == list[i])
