@@ -33,10 +33,10 @@ int main()
     {
         std::unique_ptr<AForm> ppf1(i1.makeForm("presidential pardon", "Oscar"));
         std::cout << a.getName()  << " was handed form " << ppf1->getName() << std::endl;
-        a.signAForm(*ppf1);
-        //c.signAForm(*ppf1);
-        a.executeForm(*ppf1);
-        //c.executeForm(*ppf1);
+        // a.signAForm(*ppf1);
+        b.signAForm(*ppf1);
+        // a.executeForm(*ppf1);
+        b.executeForm(*ppf1);
         std::cout << "\t***********" << std::endl;
         std::unique_ptr<AForm> rrf1(i1.makeForm("robotomy request", "Oscar"));
         std::cout << b.getName()  << " was handed form " << rrf1->getName() << std::endl;
