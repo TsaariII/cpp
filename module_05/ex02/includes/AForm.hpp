@@ -42,9 +42,10 @@ class AForm
                 const char* what() const noexcept;
         };
         std::string getName() const;
-        bool getSigned() const;
+        std::string getSigned() const;
         int getSignGrade() const;
         int getExeGrade() const;
         void beSigned(Bureaucrat& b);
         virtual void execute(Bureaucrat const & executor) const = 0;
 };
+std::ostream& operator<<(std::ostream &out, const AForm& f);

@@ -48,3 +48,4 @@ class AForm
         void beSigned(Bureaucrat& b);
         virtual void execute(Bureaucrat const & executor) const = 0;
 };
+std::ostream& operator<<(std::ostream &out, const AForm& f);

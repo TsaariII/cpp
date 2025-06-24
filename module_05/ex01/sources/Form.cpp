@@ -12,7 +12,7 @@
 
 #include "../includes/Form.hpp"
 
-Form::Form() : _Name("The Form"), _Signed(0), _SignGrade(10), _ExeGrade(10) { std::cout << "The Form created" << std::endl; }
+Form::Form() : _Name("The Form"), _Signed(0), _SignGrade(10), _ExeGrade(10) { std::cout << "The Form created with both grades needed as 10" << std::endl; }
 
 Form::Form(std::string name, int sGrade, int eGrade) : _Name(name), _Signed(false), _SignGrade(sGrade), _ExeGrade(eGrade)
 {
@@ -25,7 +25,7 @@ Form::Form(std::string name, int sGrade, int eGrade) : _Name(name), _Signed(fals
               << this->getExeGrade() << " for execute" << std::endl;
 }
 
-Form::Form(const Form &copy) : _Name(copy._Name), _Signed(copy._Signed), _SignGrade(copy._SignGrade), _ExeGrade(copy._ExeGrade)
+Form::Form(const Form &copy) : _Name(copy._Name + "_copy"), _Signed(copy._Signed), _SignGrade(copy._SignGrade), _ExeGrade(copy._ExeGrade)
 {
     std::cout << "Form " << copy.getName() << " form created" << std::endl;
 }
@@ -50,7 +50,7 @@ const char* Form::GradeTooLowExeception::what() const noexcept { return "Form er
 
 std::string Form::getName() const { return _Name; }
 
-bool Form::getSigned() const { return _Signed; }
+std::string Form::getSigned() const { return (_Signed  ? "yes" : "no"); }
 
 int Form::getSignGrade() const { return _SignGrade; }
 
@@ -64,11 +64,11 @@ void Form::beSigned(Bureaucrat& b)
         throw GradeTooLowExeception();
 }
 
-std::ostream& operator<<(std::ostream &out, Form& f)
+std::ostream& operator<<(std::ostream &out, const Form& f)
 {
     out << "Name: " << f.getName() 
         << "\nGrade needed to sign form: " << f.getSignGrade()
         << "\nGrade needed to execute form: " << f.getExeGrade()
-        << "\nSigned status: " << f.getSigned() << std::endl;
+        << "\nSigned status: " << f.getSigned();
     return out;
 }

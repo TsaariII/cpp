@@ -29,16 +29,17 @@ class Form
         class GradeTooHighExeception : public std::exception
         {
             public:
-                const char* what() const noexcept;
+            const char* what() const noexcept;
         };
         class GradeTooLowExeception : public std::exception
         {
             public:
-                const char* what() const noexcept;
+            const char* what() const noexcept;
         };
         std::string getName() const;
-        bool getSigned() const;
+        std::string getSigned() const;
         int getSignGrade() const;
         int getExeGrade() const;
         void beSigned(Bureaucrat& b);
 };
+std::ostream& operator<<(std::ostream &out, const Form& f);

@@ -27,40 +27,42 @@ int main()
     Form cF("A1452", 100, 100);
     Form dF(bF);
     aF = cF;
+    std::cout << "\t***********" << std::endl;
     try
     {
-        std::cout << "\t***********" << std::endl;
-        std::cout << b.getName() << " was handed form " << bF.getName() << std::endl;
-        bF.beSigned(b);
-        std::cout << b.getName() << " did a stupid thing and lost grade" << std::endl;
-        b.decrementGrade();
-        std::cout << b << std::endl;
-        std::cout << "\t***********" << std::endl;
-        std::cout << c.getName() << " was handed form " << cF.getName() << std::endl;
+        /* Form grade too high or too low */
+        // Form tooHigh("Not this high", 0, 0);
+        // Form tooLow("Not this low", 151, 151);
+        
+        /* Bureaucrat grade too low */
+        // std::cout << b.getName() << " was handed form:\n" << bF << std::endl;
+        // bF.beSigned(b);
+        // std::cout << b.getName() << " did a stupid thing and lost grade" << std::endl;
+        // b.decrementGrade();
+        // std::cout << b << std::endl;
+        // std::cout << "\t***********" << std::endl;
+        
+        /* Bureaucrat grade ok */
+        std::cout << c.getName() << " was handed form:\n" << cF << std::endl;
         c.signForm(cF);
+        std::cout << "Form " << cF.getName() << ":\n\tSigned status: " << cF.getSigned() << std::endl;
         std::cout << c.getName() << " was excellent today so his grade goes up" << std::endl;
         c.incrementGrade();
         std::cout << c << std::endl;
         std::cout << "\t***********" << std::endl;
-        // std::cout << "Copy of " << d.getName() << " was excellent today so his grade goes up" << std::endl;
-        // d.incrementGrade();
-        // std::cout << d << std::endl;
+        
+        /* Form already signed */
+        // std::cout << "Copy of " << a.getName() << " tried to sign form " << cF.getName() << std::endl;
+        // a.signForm(cF);
+        // std::cout << "For that silly mistake copy of " << a.getName() << " loses a grade" << std::endl;
+        // a.decrementGrade();
+        // std::cout << a << std::endl;
         // std::cout << "\t***********" << std::endl;
-        std::cout << "Copy of " << a.getName() << " tried to sign form " << bF.getName() << std::endl;
-        a.signForm(cF);
-        std::cout << "For that silly mistake copy of " << a.getName() << " loses a grade" << std::endl;
-        a.decrementGrade();
-        std::cout << a << std::endl;
-        std::cout << "\t***********" << std::endl;
-        std::cout << c.getName() << " did such a good job that let's bump his grade to 120" << std::endl;
-        c.setGrade(120);
-        std::cout << c << std::endl;
-        std::cout << "\t***********" << std::endl;
     }
     catch(std::exception& e)
     {
         std::cerr << e.what() << '\n';
-        std::cout << "\t***********" << std::endl;
+        std::cout << "\t***********" << std::endl; 
     }
     return 0;
 }

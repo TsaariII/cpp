@@ -88,14 +88,14 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signForm(Form &f)
 {
-    if (f.getSigned() == false)
+    if (f.getSigned() == "no")
     {
         f.beSigned(*this);
         std::cout << this->getName() << " signed form " << f.getName() << std::endl;
         return ;
     }
     else
-        std::cout << this->getName() << " couldn't sign the form beacause it's already signed" << std::endl;
+        std::cout << this->getName() << " couldn't sign the form " << f.getName() << " beacause it's already signed" << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighExeception::what() const noexcept { return "Grade too high: Bureaucrats can't be *more* than perfect (minimum is 1)"; }
