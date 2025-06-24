@@ -32,20 +32,35 @@ int main()
     try
     {
         std::unique_ptr<AForm> ppf1(i1.makeForm("presidential pardon", "Oscar"));
-        std::cout << a.getName()  << " was handed form " << ppf1->getName() << std::endl;
+        if (!ppf1)
+        {
+            std::cerr << "Failed to create from.\n";
+            return 1;
+        }
+        std::cout << a.getName()  << " was handed form:\n" << *ppf1 << std::endl;
         // a.signAForm(*ppf1);
         b.signAForm(*ppf1);
         // a.executeForm(*ppf1);
         b.executeForm(*ppf1);
         std::cout << "\t***********" << std::endl;
         std::unique_ptr<AForm> rrf1(i1.makeForm("robotomy request", "Oscar"));
-        std::cout << b.getName()  << " was handed form " << rrf1->getName() << std::endl;
+        if (!rrf1)
+        {
+            std::cerr << "Failed to create from.\n";
+            return 1;
+        }
+        std::cout << b.getName()  << " was handed form:\n" << *rrf1 << std::endl;
         b.signAForm(*rrf1);
         // c.signAForm(*rrf1);
         b.executeForm(*rrf1);
         std::cout << "\t***********" << std::endl;
 		std::unique_ptr<AForm> scf1(i1.makeForm("shrubbery", "Park"));
-        std::cout << b.getName()  << " was handed form " << scf1->getName() << std::endl;
+        if (!scf1)
+        {
+            std::cerr << "Failed to create from.\n";
+            return 1;
+        }
+        std::cout << b.getName()  << " was handed form:\n" << *scf1 << std::endl;
         b.signAForm(*scf1);
         b.executeForm(*scf1);
 		std::cout << "\t***********" << std::endl;
