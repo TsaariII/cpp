@@ -88,7 +88,7 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signAForm(AForm &f)
 {
-    if (f.getSigned() == false)
+    if (f.getSigned() == "no")
     {
         f.beSigned(*this);
         std::cout << this->getName() << " signed form " << f.getName() << std::endl;

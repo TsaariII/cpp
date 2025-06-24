@@ -44,7 +44,7 @@ std::string RobotomyRequestForm::getTarget() const { return _Target; }
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-    if (!this->getSigned())
+    if (this->getSigned() == "no")
         throw NotSignedExeception();
     if (executor.getGrade() > this->getExeGrade())
         throw GradeTooLowExeception();

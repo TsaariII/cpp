@@ -44,7 +44,7 @@ std::string ShrubberyCreationForm::getTarget() const { return _Target; }
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-    if (!this->getSigned())
+    if (this->getSigned() == "no")
         throw NotSignedExeception();
     if (executor.getGrade() > this->getExeGrade())
         throw GradeTooLowExeception();

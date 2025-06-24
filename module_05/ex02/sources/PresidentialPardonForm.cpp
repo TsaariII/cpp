@@ -30,7 +30,9 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm &copy) : A
 PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm &copy)
 {
     if (this != &copy)
+    {
         _Target = copy._Target;
+    }
     std::cout << "Copy of form " << copy.getName() << " with name "
               << this->getName() << " for " << _Target
               <<  " created with assignment operator" << std::endl;
@@ -43,7 +45,7 @@ std::string PresidentialPardonForm::getTarget() const { return _Target; }
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-    if (!this->getSigned())
+    if (this->getSigned() == "no")
         throw NotSignedExeception();
     if (executor.getGrade() > this->getExeGrade())
         throw GradeTooLowExeception();
