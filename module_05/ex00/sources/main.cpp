@@ -40,8 +40,8 @@ int main()
         a.decrementGrade();
         std::cout << a << std::endl;
         std::cout << "\t***********" << std::endl;
-        std::cout << c.getName() << " did such a good job that let's bump his grade to 120" << std::endl;
-        c.setGrade(120);
+        std::cout << c.getName() << " did such a good job that let's bump his grade to 151" << std::endl;
+        c.setGrade(151);
         std::cout << c << std::endl;
         std::cout << "\t***********" << std::endl;
     }

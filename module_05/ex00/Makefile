@@ -12,7 +12,7 @@ OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 COMP = c++
 
-CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++20 -g
+CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++20
 
 all: $(NAME)
 

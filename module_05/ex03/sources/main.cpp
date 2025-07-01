@@ -64,6 +64,16 @@ int main()
         b.signAForm(*scf1);
         b.executeForm(*scf1);
 		std::cout << "\t***********" << std::endl;
+        std::string forms[] = {"presidential pardon", "robotomy request", "stupid form", "shrubbery"};
+        for (int i = 0; i < 4; ++i)
+        {
+            std::unique_ptr<AForm> form(i1.makeForm(forms[i], "Test"));
+            if (form)
+                std::cout << *form << std::endl;
+            else
+                std::cerr << "Form creation failed for name: " << forms[i];
+            std::cout << "\t***********" << std::endl;
+        }
     }
     catch(std::exception& e)
     {
