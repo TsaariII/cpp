@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 07:54:05 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/04/17 14:41:19 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:44:18 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,34 +109,3 @@ int main()
     }
     return 0;
 }
-
-/*
-Beraucrat
-    Default
-    Constructor
-    Copy
-    Assignment
-    Sign form
-    Execute form
-President
-    Default
-    Constructor
-    Copy
-    Assignment
-    Sign execption
-    Execute exeception
-Robotomy
-    Default
-    Constructor
-    Copy
-    Assignment
-    Sign execption
-    Execute exeception 
-Shrubbery
-    Default
-    Constructor
-    Copy
-    Assignment
-    Sign execption
-    Execute exeception
-*/

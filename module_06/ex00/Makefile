@@ -1,15 +1,10 @@
 
-NAME = bureaucrat
+NAME = conventer
 
 SRC_DIR = sources
 
 SRC = $(SRC_DIR)/main.cpp\
-	$(SRC_DIR)/Bureaucrat.cpp\
-	$(SRC_DIR)/AForm.cpp\
-	$(SRC_DIR)/PresidentialPardonForm.cpp\
-	$(SRC_DIR)/RobotomyRequestForm.cpp\
-	$(SRC_DIR)/ShrubberyCreationForm.cpp\
-	$(SRC_DIR)/Intern.cpp
+	  $(SRC_DIR)/ScalarConverter.cpp
 
 OBJ_DIR = objects
 
