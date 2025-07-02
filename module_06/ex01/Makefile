@@ -1,10 +1,10 @@
 
-NAME = conventer
+NAME = serializer
 
-SRC_DIR = sources
+SRC_DIR = .
 
 SRC = $(SRC_DIR)/main.cpp\
-	  $(SRC_DIR)/ScalarConverter.cpp
+	  $(SRC_DIR)/Serializer.cpp
 
 OBJ_DIR = objects
 

@@ -1,10 +1,13 @@
 
-NAME = conventer
+NAME = base
 
 SRC_DIR = sources
 
 SRC = $(SRC_DIR)/main.cpp\
-	  $(SRC_DIR)/ScalarConverter.cpp
+	  $(SRC_DIR)/A.cpp\
+	  $(SRC_DIR)/B.cpp\
+	  $(SRC_DIR)/C.cpp\
+	  $(SRC_DIR)/Base.cpp
 
 OBJ_DIR = objects
 
@@ -21,7 +24,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@$(COMP) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\n\033[0;32mI convert. I good\033[0m\n"
+	@echo "\n\033[0;32mIdentifying pointers is so much fun!!\033[0m\n"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
