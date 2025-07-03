@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 14:12:35 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/07/03 14:46:05 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/07/03 15:39:48 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ int main()
     iter(dblArray, 5, print<double>);
     std::cout << "strArray:" << std::endl;
     iter(strArray, 5, print<std::string>);
+    return 0;
 }

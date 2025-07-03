@@ -1,5 +1,5 @@
 
-NAME = iter
+NAME = array
 
 SRC_DIR = .
 
