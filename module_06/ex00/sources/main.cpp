@@ -18,9 +18,9 @@ int main(int argc, char **argv)
     if (argc != 2)
     {
         if (argc == 1)
-           std::cout << "What you think I can read mind?" << std::endl;
+           std::cout << "What you think I can read your mind?" << std::endl;
         else
-            std::cout << "Only 1. Not 2 or 3 or whatever magic number you come up. One argument!" << std::endl;
+            std::cout << "Only 1. Anything else is too much to handle" << std::endl;
         return 1;
     }
     std::string thing = argv[1];

@@ -1,5 +1,5 @@
 
-NAME = conventer
+NAME = converter
 
 SRC_DIR = sources
 
