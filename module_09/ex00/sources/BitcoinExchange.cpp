@@ -15,6 +15,7 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include <ctime>
 
 BitcoinExchange::BitcoinExchange() {}
 
@@ -49,12 +50,20 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
     if (date.length() != 10 || date[4] != '-' || date[7] != '-')
         return false;
     int y, m, d;
-    char d1, d2;
-    std::stringstream s(date);
-    s >> y >> d1 >> m >> d2 >> d;
-    if (m < 1 || m > 12 || d < 1 || d > 31)
+    if (sscanf(date.c_str(), "%d-%d-%d", &y, &m, %d) != 3)
         return false;
-    return  true;
+    struct tm timeinfo = {};
+    timeinfo.tm_year = y - 1900;
+    timeinfo.tm_mon = m - 1;
+    timeinfo.tm_mday = d;
+    timeinfo.tm_hour = 12;
+    struct tm copy = timeinfo;
+    time_t t  = mktime(&copy);
+    if (t == -1)
+        return false;
+    return  copy.tm_year == timeinfo.tm_year &&
+            copy.tm_mon == timeinfo.tm_mon &&
+            copy.tm_mday == timeinfo.tm_mday;
 }
 
 void BitcoinExchange::loadDB(const std::string& db)
@@ -63,6 +72,17 @@ void BitcoinExchange::loadDB(const std::string& db)
     if (!file.is_open())
         std::cerr << "Couldn't open the file" << std::endl;
     std::string line;
-    std::getline(db, line);
-    
+    std::getline(file, line);
+    while (std::getline(file, line))
+    {
+        std::istringstream iss(line);
+        std::string date, rate;
+        if (!std::getline(iss, date, ',') || !std::getline(iss, rate))
+        {
+            
+            continue;
+        }
+        float rateF = std::stof(rate);
+        _Rates[date] = rateF;
+    }
 }
