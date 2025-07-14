@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:39:49 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/07/14 13:14:16 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:59:19 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
     {
-        std::cerr << "No file given" << std::endl;
+        std::cerr << "Invalid number of arguments. Only one" << std::endl;
         return 1;
     }
     std::ifstream file(argv[1]);
@@ -54,6 +54,11 @@ int main(int argc, char **argv)
         std::istringstream stream(line);
         std::string date, rateStr;
         float rate;
+        if (std::count(line.begin(), line.end(), '|') != 1)
+        {
+            std::cerr << "Error with pipes on line {" << line << "}" << std::endl;
+            continue;
+        }
         size_t pipePos = line.find('|');
         if (pipePos == std::string::npos)
         {
