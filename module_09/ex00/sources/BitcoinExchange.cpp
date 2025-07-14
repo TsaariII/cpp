@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nzharkev <nzharkev@student.42.fr>          #+#  +:+       +#+        */
+/*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-07-07 10:39:53 by nzharkev          #+#    #+#             */
-/*   Updated: 2025-07-07 10:39:53 by nzharkev         ###   ########.fr       */
+/*   Created: 2025/07/07 10:39:53 by nzharkev          #+#    #+#             */
+/*   Updated: 2025/07/14 13:14:32 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
     if (date.length() != 10 || date[4] != '-' || date[7] != '-')
         return false;
     int y, m, d;
-    if (sscanf(date.c_str(), "%d-%d-%d", &y, &m, %d) != 3)
+    if (sscanf(date.c_str(), "%d-%d-%d", &y, &m, &d) != 3)
         return false;
     struct tm timeinfo = {};
     timeinfo.tm_year = y - 1900;
@@ -70,7 +70,10 @@ void BitcoinExchange::loadDB(const std::string& db)
 {
     std::fstream file(db);
     if (!file.is_open())
+    {
         std::cerr << "Couldn't open the file" << std::endl;
+        exit(1);
+    }
     std::string line;
     std::getline(file, line);
     while (std::getline(file, line))
