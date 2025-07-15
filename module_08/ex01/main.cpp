@@ -6,83 +6,102 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 17:33:18 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/07/04 13:06:01 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/07/15 10:57:18 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Span.hpp"
+#include <iostream>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
+#include "Span.hpp"
 
-int main()
-{
-    Span sp = Span(5);
+void test_basic_spans() {
+    std::cout << "\n=== Basic Span Tests ===" << std::endl;
+    Span sp(5);
     sp.addNumber(6);
     sp.addNumber(3);
     sp.addNumber(17);
     sp.addNumber(9);
     sp.addNumber(11);
-    std::cout << sp.shortestSpan() << std::endl;
-    std::cout << sp.longestSpan() << std::endl;
 
-    try
-    {
-        std::cout << "\t======= BASIC TEST =======" << std::endl;
-        std::srand(std::time(NULL));
-        Span s(5);
-        // for (size_t i = 0; i < 5; i++)
-        //     s.addNumber(std::rand());
-        s.addNumber(0);
-        s.addNumber(4);
-        s.addNumber(-3);
-        std::cout << "Shortest span: " << s.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << s.longestSpan() << std::endl;
+    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;  // Should be 2
+    std::cout << "Longest: " << sp.longestSpan() << std::endl;    // Should be 14
+}
+
+void test_overflow() {
+    std::cout << "\n=== Test Overflow Exception ===" << std::endl;
+    Span sp(2);
+    sp.addNumber(1);
+    sp.addNumber(2);
+    try {
+        sp.addNumber(3);  // Should throw
+    } catch (const std::exception& e) {
+        std::cout << "Caught exception: " << e.what() << std::endl;
     }
-    catch (std::exception& e)
-    {
-        std::cerr << "Exception (Basic Test): " << e.what() << std::endl;
+}
+
+void test_not_enough_elements() {
+    std::cout << "\n=== Not Enough Elements Exception ===" << std::endl;
+    Span sp(2);
+    sp.addNumber(1);
+    try {
+        sp.shortestSpan();  // Should throw
+    } catch (const std::exception& e) {
+        std::cout << "Caught exception: " << e.what() << std::endl;
     }
-    try
-    {
-        std::cout << "\t======= ADDING TOO MANY TEST =======" << std::endl;
-        Span s(2);
-        s.addNumber(3);
-        s.addNumber(5);
-        s.addNumber(2);
+}
+
+void test_negative_numbers() {
+    std::cout << "\n=== Negative Number Handling ===" << std::endl;
+    Span sp(4);
+    sp.addNumber(-10);
+    sp.addNumber(0);
+    sp.addNumber(10);
+    sp.addNumber(100);
+    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;  // 10
+    std::cout << "Longest: " << sp.longestSpan() << std::endl;   // 110
+}
+
+void test_identical_numbers() {
+    std::cout << "\n=== Identical Numbers ===" << std::endl;
+    Span sp(3);
+    sp.addNumber(42);
+    sp.addNumber(42);
+    sp.addNumber(42);
+    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;  // 0
+    std::cout << "Longest: " << sp.longestSpan() << std::endl;    // 0
+}
+
+void test_large_random() {
+    std::cout << "\n=== Large Random Data (10000) ===" << std::endl;
+    Span sp(10000);
+    std::vector<int> data(10000);
+    std::generate(data.begin(), data.end(), std::rand);
+    sp.addRange(data.begin(), data.end());
+    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
+    std::cout << "Longest: " << sp.longestSpan() << std::endl;
+}
+
+void test_edge_addRange() {
+    std::cout << "\n=== addRange() Capacity Overflow ===" << std::endl;
+    Span sp(5);
+    std::vector<int> more = {1, 2, 3, 4, 5, 6};
+    try {
+        sp.addRange(more.begin(), more.end());  // should throw
+    } catch (const std::exception& e) {
+        std::cout << "Caught exception: " << e.what() << std::endl;
     }
-    catch (std::exception& e)
-    {
-        std::cerr << "Exception (Basic Test): " << e.what() << std::endl;
-    }
-    try
-    {
-        std::cout << "\t======= NOT ENOUGH ELEMENTS =======" << std::endl;
-        Span s(2);
-        s.addNumber(3);
-        s.addNumber(5);
-        std::cout << "Span size: 2" << std::endl;
-        std::cout << "Shortest span: " << s.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << s.longestSpan() << std::endl;
-    }
-    catch (std::exception& e)
-    {
-        std::cerr << "Exception (Basic Test): " << e.what() << std::endl;
-    }
-    try
-    {
-        std::cout << "\t======= BIG TEST =======" << std::endl;
-        std::vector<int> vec1(20000);
-        std::generate(vec1.begin(), vec1.end(), std::rand);
-        Span s(20000);
-        s.addRange(vec1.begin(), vec1.end());
-        std::cout << "Shortest span: " << s.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << s.longestSpan() << std::endl;
-    }
-    catch (std::exception& e)
-    {
-        std::cerr << "Exception (Basic Test): " << e.what() << std::endl;
-    }
+}
+
+int main() {
+    std::srand(std::time(NULL));
+    test_basic_spans();
+    test_overflow();
+    test_not_enough_elements();
+    test_negative_numbers();
+    test_identical_numbers();
+    test_large_random();
+    test_edge_addRange();
     return 0;
 }
