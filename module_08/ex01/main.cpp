@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 17:33:18 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/07/15 10:57:18 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/07/15 11:25:57 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,21 @@ void test_basic_spans() {
     sp.addNumber(17);
     sp.addNumber(9);
     sp.addNumber(11);
-
-    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;  // Should be 2
-    std::cout << "Longest: " << sp.longestSpan() << std::endl;    // Should be 14
+    std::cout << "Span[5]: 6, 3, 17, 9, 11" << std::endl;
+    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
+    std::cout << "Longest: " << sp.longestSpan() << std::endl;
 }
 
 void test_overflow() {
     std::cout << "\n=== Test Overflow Exception ===" << std::endl;
     Span sp(2);
     sp.addNumber(1);
+    std::cout << "Span[2]: 1" << std::endl;
     sp.addNumber(2);
+    std::cout << "Span[2]: 1, 2" << std::endl;
     try {
-        sp.addNumber(3);  // Should throw
+        sp.addNumber(3);
+        std::cout << "Span[2]: 1, 2, 3" << std::endl;
     } catch (const std::exception& e) {
         std::cout << "Caught exception: " << e.what() << std::endl;
     }
@@ -45,8 +48,10 @@ void test_not_enough_elements() {
     std::cout << "\n=== Not Enough Elements Exception ===" << std::endl;
     Span sp(2);
     sp.addNumber(1);
+    std::cout << "Span[2]: 1" << std::endl;
     try {
-        sp.shortestSpan();  // Should throw
+        sp.shortestSpan();
+        std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
     } catch (const std::exception& e) {
         std::cout << "Caught exception: " << e.what() << std::endl;
     }
@@ -59,8 +64,9 @@ void test_negative_numbers() {
     sp.addNumber(0);
     sp.addNumber(10);
     sp.addNumber(100);
-    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;  // 10
-    std::cout << "Longest: " << sp.longestSpan() << std::endl;   // 110
+    std::cout << "Span[4]: -10, 0, 10, 100" << std::endl;
+    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
+    std::cout << "Longest: " << sp.longestSpan() << std::endl;
 }
 
 void test_identical_numbers() {
@@ -69,8 +75,9 @@ void test_identical_numbers() {
     sp.addNumber(42);
     sp.addNumber(42);
     sp.addNumber(42);
-    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;  // 0
-    std::cout << "Longest: " << sp.longestSpan() << std::endl;    // 0
+    std::cout << "Span[3]: 42, 42, 42" << std::endl;
+    std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
+    std::cout << "Longest: " << sp.longestSpan() << std::endl;
 }
 
 void test_large_random() {
@@ -79,6 +86,7 @@ void test_large_random() {
     std::vector<int> data(10000);
     std::generate(data.begin(), data.end(), std::rand);
     sp.addRange(data.begin(), data.end());
+    std::cout << "Span[1000]" << std::endl;
     std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
     std::cout << "Longest: " << sp.longestSpan() << std::endl;
 }
@@ -87,8 +95,10 @@ void test_edge_addRange() {
     std::cout << "\n=== addRange() Capacity Overflow ===" << std::endl;
     Span sp(5);
     std::vector<int> more = {1, 2, 3, 4, 5, 6};
+    std::cout << "Span[5]" << std::endl;
     try {
-        sp.addRange(more.begin(), more.end());  // should throw
+        sp.addRange(more.begin(), more.end());
+        std::cout << "Span[5]: 1, 2, 3, 4, 5, 6" << std::endl;
     } catch (const std::exception& e) {
         std::cout << "Caught exception: " << e.what() << std::endl;
     }
