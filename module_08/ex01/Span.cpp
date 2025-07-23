@@ -6,7 +6,7 @@
 /*   By: nzharkev <nzharkev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:31:58 by nzharkev          #+#    #+#             */
-/*   Updated: 2025/07/04 12:55:57 by nzharkev         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:38:44 by nzharkev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ int Span::shortestSpan() const
     return minSpan;
 }
 
-int Span::longestSpan() const
+unsigned int Span::longestSpan() const
 {
-    if (_Ints.size() <= 2)
-    throw std::runtime_error("Not enough elements to compute span");
+    if (_Ints.size() < 2)
+        throw std::runtime_error("Not enough elements to compute span");
     int minVal = *std::min_element(_Ints.begin(), _Ints.end());
     int maxVal = *std::max_element(_Ints.begin(), _Ints.end());
-    return maxVal - minVal;
+    unsigned int un;
+    un = maxVal - minVal;
+    return un;
 }
 
 void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
