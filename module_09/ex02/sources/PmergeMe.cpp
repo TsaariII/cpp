@@ -113,8 +113,11 @@ void PmergeMe::_SortVector(std::vector<int>& vec)
         return;
     std::vector<int> main;
     std::vector<int> pend;
+    bool hasLast = (vec.size() % 2 != 0);
+    int last = hasLast ? vec.back() : -1;
+    size_t limit = hasLast ? vec.size() - 1 : vec.size();
     size_t i = 0;
-    for (; i + 1 < vec.size(); i += 2)
+    for (; i < limit; i += 2)
     {
         int a = vec[i];
         int b = vec[i + 1];
@@ -129,8 +132,6 @@ void PmergeMe::_SortVector(std::vector<int>& vec)
             main.push_back(a);
         }
     }
-    bool odd = (i < vec.size());
-    int last = odd ? vec.back() : -1;
     _SortVector(main);
     std::vector<size_t> insertionOrder = generateJacobsthal(pend.size());
     for (size_t j = 0; j < insertionOrder.size(); ++j)
@@ -139,7 +140,7 @@ void PmergeMe::_SortVector(std::vector<int>& vec)
         std::vector<int>::iterator pos = std::lower_bound(main.begin(), main.end(), pend[indx]);
         main.insert(pos, pend[indx]);
     }
-    if (odd)
+    if (hasLast)
     {
         std::vector<int>::iterator pos = std::lower_bound(main.begin(), main.end(), last);
         main.insert(pos, last); 
@@ -154,7 +155,7 @@ void PmergeMe::_SortDeque(std::deque<int>& deq)
     std::deque<int> main;
     std::deque<int> pend;
     size_t i = 0;
-    for (; i + 1 < deq.size(); i += 2)
+    for (; i < deq.size(); i += 2)
     {
         int a = deq[i];
         int b = deq[i + 1];
@@ -169,7 +170,7 @@ void PmergeMe::_SortDeque(std::deque<int>& deq)
             main.push_back(a);
         }
     }
-    bool odd = (i < deq.size());
+    bool odd = (i < deq.size() % 2 != 0);
     int last = odd ? deq.back() : -1;
     _SortDeque(main);
     std::vector<size_t> insertionOrder = generateJacobsthal(pend.size());
