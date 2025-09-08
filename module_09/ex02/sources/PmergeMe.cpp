@@ -55,24 +55,24 @@ void PmergeMe::readInput(char **argv)
 
 void PmergeMe::sorter()
 {
-    _PrintVector("Before:", _DataVec);
-    _PrintDeque("Before:", _DataDeq);
+    _PrintVector("Before:", _DataVec, 1);
+    // _PrintDeque("Before:", _DataDeq);
     struct timeval start, end;
     gettimeofday(&start, NULL);
-    _SortVector(_DataVec);
+    _SortVector(_DataVec, 1);
     gettimeofday(&end, NULL);
     double vecTime = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
-    gettimeofday(&start, NULL);
-    _SortDeque(_DataDeq);
-    gettimeofday(&end, NULL);
-    double deqTime = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
-    _PrintVector("After:", _DataVec);
-    _PrintDeque("After:", _DataDeq);
+    // gettimeofday(&start, NULL);
+    // _SortDeque(_DataDeq);
+    // gettimeofday(&end, NULL);
+    // double deqTime = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
+    // _PrintVector("After:", _DataVec);
+    // _PrintDeque("After:", _DataDeq);
     std::cout << "Time to process a range of " << _DataVec.size()
               << " elements with std::vector : " << vecTime << " us" << std::endl;
 
-    std::cout << "Time to process a range of " << _DataDeq.size()
-              << " elements with std::deque : " << deqTime << " us" << std::endl;
+    // std::cout << "Time to process a range of " << _DataDeq.size()
+    //           << " elements with std::deque : " << deqTime << " us" << std::endl;
 }
 
 std::vector<size_t> generateJacobsthal(size_t size)
@@ -107,92 +107,81 @@ std::vector<size_t> generateJacobsthal(size_t size)
 }
 
 
-void PmergeMe::_SortVector(std::vector<int>& vec)
+void PmergeMe::_SortVector(std::vector<int>& vec, size_t p_size)
 {
-    if (vec.size() <= 1)
+    if (p_size == 0 || p_size >= vec.size()) {
+        // base case: nothing to do / one p_size covers all
+        std::ostringstream base;
+        base << "Base (p_size = " << p_size << "): ";
+        _PrintVector(base.str(), vec, p_size);
         return;
-    std::vector<int> main;
-    std::vector<int> pend;
-    bool hasLast = (vec.size() % 2 != 0);
-    int last = hasLast ? vec.back() : -1;
-    size_t limit = hasLast ? vec.size() - 1 : vec.size();
-    size_t i = 0;
-    for (; i < limit; i += 2)
+    }
+
+    std::cout << "p_size = " << p_size << std::endl;
+    const size_t step = p_size * 2;
+    size_t bi;
+    if (p_size != 1)
+        bi = 1 + p_size;
+    else
+        bi = 1;
+    std::cout << "|===============|" << std::endl;
+    for (; bi < vec.size(); bi += step)
     {
-        int a = vec[i];
-        int b = vec[i + 1];
-        if (a < b)
+        // std::cout << "bi = " << bi << std::endl;
+        const size_t a = bi;// + p_size;  // start of p_size A
+        const size_t b = (bi - p_size);// + p_size;        // start of p_size B (adjacent to A)
+        // std::cout << "a = " << a << ": " << vec[a] << " b = " << b << ": " << vec[b] << std::endl;
+        // Compare by first element of each p_size
+        if (vec[a] < vec[b])
         {
-            pend.push_back(a);
-            main.push_back(b);
-        }
-        else
-        {
-            pend.push_back(b);
-            main.push_back(a);
+            // std::cout << "Pair to swap {" << vec[a] << " " << vec[b] << "}" << std::endl;
+            std::swap_ranges(vec.begin() + b, vec.begin() + a, vec.begin() + b + p_size);
         }
     }
-    _SortVector(main);
-    std::vector<size_t> insertionOrder = generateJacobsthal(pend.size());
-    for (size_t j = 0; j < insertionOrder.size(); ++j)
-    {
-        size_t indx = insertionOrder[j];
-        std::vector<int>::iterator pos = std::lower_bound(main.begin(), main.end(), pend[indx]);
-        main.insert(pos, pend[indx]);
-    }
-    if (hasLast)
-    {
-        std::vector<int>::iterator pos = std::lower_bound(main.begin(), main.end(), last);
-        main.insert(pos, last); 
-    }
-    vec = main;
+    std::cout << "|===============|" << std::endl;
+    std::ostringstream pass;
+    pass << "After p_size=" << p_size << " swap: ";
+    _PrintVector(pass.str(), vec, p_size);
+
+    // Recurse doubling the p_size size
+    _SortVector(vec, p_size * 2);
 }
 
 void PmergeMe::_SortDeque(std::deque<int>& deq)
 {
-    if (deq.size() <= 1)
-        return;
-    std::deque<int> main;
-    std::deque<int> pend;
-    size_t i = 0;
-    for (; i < deq.size(); i += 2)
-    {
-        int a = deq[i];
-        int b = deq[i + 1];
-        if (a < b)
-        {
-            pend.push_back(a);
-            main.push_back(b);
-        }
-        else
-        {
-            pend.push_back(b);
-            main.push_back(a);
-        }
-    }
-    bool odd = (i < deq.size() % 2 != 0);
-    int last = odd ? deq.back() : -1;
-    _SortDeque(main);
-    std::vector<size_t> insertionOrder = generateJacobsthal(pend.size());
-    for (size_t j = 0; j < insertionOrder.size(); ++j)
-    {
-        size_t indx = insertionOrder[j];
-        std::deque<int>::iterator pos = std::lower_bound(main.begin(), main.end(), pend[indx]);
-        main.insert(pos, pend[indx]);
-    }
-    if (odd)
-    {
-        std::deque<int>::iterator pos = std::lower_bound(main.begin(), main.end(), last);
-        main.insert(pos, last); 
-    }
-    deq = main;
+    std::cout << deq[0] << std::endl;
 }
 
-void PmergeMe::_PrintVector(const std::string& label, const std::vector<int>& data)
+void PmergeMe::_PrintVector(const std::string& label, const std::vector<int>& data, size_t p_size)
 {
     std::cout << label;
-    for (size_t i = 0; i < data.size(); i++)
-        std::cout << " " << data[i];
+    size_t step = p_size * 2;
+    size_t i;
+    if (p_size != 1)
+        i =  + step;// 0 + p_size;
+    else
+    {
+        i = 1;
+        step = 1;
+    }
+    for (; i < data.size(); i += step)
+    {
+        size_t j;
+        if (i != 1 + p_size)
+            j = i - (p_size * 2);
+        else
+            j = 0;
+        std::cout << "{";
+        for (; j < i; j++)
+        {
+            std::cout << data[j];
+            if (j != i - 1 && step != 1)
+                std::cout << " ";
+            if ((j == j + step) && j < i)
+                std::cout << "}{";
+        }
+        std::cout << "}";
+    }
     std::cout << std::endl;
 
 }

@@ -25,9 +25,9 @@ class PmergeMe
     private:
         std::vector<int> _DataVec;
         std::deque<int> _DataDeq;
-        void _SortVector(std::vector<int>& vec);
+        void _SortVector(std::vector<int>& vec, size_t p_size);
         void _SortDeque(std::deque<int>& deq);
-        void _PrintVector(const std::string& label, const std::vector<int>& data);
+        void _PrintVector(const std::string& label, const std::vector<int>& data, size_t p_size);
         void _PrintDeque(const std::string& label, const std::deque<int>& data);
     public:
         PmergeMe();
