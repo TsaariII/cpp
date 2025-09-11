@@ -1,0 +1,93 @@
+void PmergeMe::_SortVector(std::vector<int>& vec, size_t p_size)
+{
+    // Base case
+    if (p_size == 0 || p_size >= vec.size()) {
+        std::ostringstream base;
+        base << "Base (p_size = " << p_size << "): ";
+        _PrintVector(base.str(), vec, p_size);
+        return;
+    }
+
+    const size_t step = p_size * 2;
+
+    // Debug: before pass
+    {
+        std::ostringstream os;
+        os << "Before p_size=" << p_size << " pass: ";
+        _PrintVector(os.str(), vec, p_size);
+    }
+
+    // Walk boundaries between adjacent blocks: [b .. b+p_size) | [a .. a+p_size)
+    // bi marks the start of the second block; first starts at (bi - p_size)
+    for (size_t bi = p_size; bi + p_size <= vec.size(); bi += step) {
+        const size_t a = bi;            // start of block B
+        const size_t b = bi - p_size;   // start of block A
+
+        // Compare by leading element (use a different key if you want)
+        if (vec[a] < vec[b]) {
+            // Swap the two blocks element-by-element with iter_swap
+            std::cout << "a = " << a << ": " << vec[a] << " b = " << b << ": " << vec[b] << std::endl;
+            for (size_t k = 0; k < p_size; ++k) {
+                std::iter_swap(vec.begin() + b + k, vec.begin() + a + k);
+            }
+
+            // Optional debug after each swap
+            // _PrintVector("After swap: ", vec, p_size);
+        }
+    }
+
+    // Debug: after pass
+    {
+        std::ostringstream os;
+        os << "After  p_size=" << p_size << " pass: ";
+        _PrintVector(os.str(), vec, p_size);
+    }
+
+    // Recurse doubling the block size
+    _SortVector(vec, step);
+}
+
+void PmergeMe::_SortVector(std::vector<int>& vec, size_t p_size)
+{
+    if (p_size == 0 || p_size >= vec.size()) {
+        // base case: nothing to do / one p_size covers all
+        std::ostringstream base;
+        base << "Base (p_size = " << p_size << "): ";
+        _PrintVector(base.str(), vec, p_size);
+        return;
+    }
+    
+    std::cout << "|===============|" << std::endl;
+    std::cout << "p_size = " << p_size << std::endl;
+    std::ostringstream stream;
+    stream << "Before p_size=" << p_size << " swap: ";
+    _PrintVector(stream.str(), vec, p_size);
+    const size_t step = p_size * 2;
+    size_t bi;
+    if (p_size != 1)
+        bi = 1 + p_size;
+    else
+        bi = 1;
+    for (; bi < vec.size(); bi += step)
+    {
+        // std::cout << "bi = " << bi << std::endl;
+        const size_t a = bi;// + p_size;  // start of p_size A
+        const size_t b = (bi - p_size);// + p_size;        // start of p_size B (adjacent to A)
+        std::cout << "a = " << a << ": " << vec[a] << " b = " << b << ": " << vec[b] << std::endl;
+        // Compare by first element of each p_size
+        
+        if (vec[a] < vec[b])
+        {
+            std::cout << "Swapping a:" << vec[a] << " b:" << vec[b] << "\n";
+            for (size_t k = 0; k < p_size; ++k)
+                std::iter_swap(vec.begin() + b + k, vec.begin() + a + k);
+            _PrintVector("After swap:", vec, p_size);
+        }
+    }
+    std::ostringstream pass;
+    pass << "After p_size=" << p_size << " swap: ";
+    _PrintVector(pass.str(), vec, p_size);
+
+    // Recurse doubling the p_size size
+    _SortVector(vec, p_size * 2);
+}

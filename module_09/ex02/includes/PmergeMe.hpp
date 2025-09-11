@@ -20,6 +20,14 @@
 #include <stdexcept>
 #include <sstream>
 
+struct block
+{
+    std::string name;
+    int value;
+    std::vector<int> block;
+};
+
+
 class PmergeMe
 {
     private:
