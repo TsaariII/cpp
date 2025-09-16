@@ -91,3 +91,188 @@ void PmergeMe::_SortVector(std::vector<int>& vec, size_t p_size)
     // Recurse doubling the p_size size
     _SortVector(vec, p_size * 2);
 }
+    
+    // for (size_t i = p_size * 2 - 1; i < vec.size(); i += p_size * 2)
+    // {
+        //     if (i + p_size > vec.size())
+        //         break;
+        //     // std::cout << "i: " << std::to_string(i - p_size) << std::endl;
+        //     pair += 1;
+        //     block b;
+        //     b.value = main[i - p_size];
+        //     b.name = "b" + std::to_string(pair);
+        //     size_t k = i - (p_size * 2);
+        //     if (k > main.size())
+        //         k = 0;
+        //     for (; k < p_size; k++)
+        //         b.block.push_back(main[k]);
+        //     block a;
+        //     a.value = main[i];
+        //     a.name = "a" + std::to_string(pair);
+        //     // std::cout << "i: " << std::to_string(i - p_size) << std::endl;
+        //     for (size_t j = i - p_size + 1; j <= i; j++)
+        //         a.block.push_back(main[j]);
+        //     if (pair == 1)
+        //     {
+        //         main_s.push_back(b);
+        //         main_s.push_back(a);
+        //     }
+        //     else
+        //     {
+        //         main_s.push_back(a);
+        //         pend_s.push_back(b);
+        //     }
+        // }
+    // std::cout << "p_size * 2 - 1 = " << std::to_string(p_size * 2 - 1) << std::endl;
+    // std::cout << "main size: " << std::to_string(main.size()) << std::endl;
+
+        if (p_size == 4)
+    {
+        std::cout << "|===============|" << std::endl;
+        std::cout << "Pair size: " << p_size << std::endl;
+        _PrintVector("Before Jacobstahl:", vec, 1);
+    }
+    std::vector<block> main_s;
+    std::vector<block> pend_s;
+    std::vector<int> main;
+    std::vector<int> pend;
+    std::vector<int> odd;
+    size_t i = 0;
+    size_t odd_s = vec.size() - (vec.size() % p_size);
+    for (; i < (p_size * 2); i++)
+        main.push_back(vec[i]);
+    for (; i < odd_s; i++)
+    {
+        if (i + p_size  < odd_s)
+            main.push_back(vec[i + p_size]);
+        pend.push_back(vec[i]);
+        if (p_size == 4)
+        {
+            std::cout << "Pair size: " << p_size <<  std::endl;
+            std::cout << "vec size: " << vec.size() << std::endl;
+            std::cout << "i: " << std::to_string(i) << std::endl;
+            std::cout << "vec[" << i <<"]: " << vec[i] << std::endl;
+            std::cout << "vec[" << i + p_size <<"]: " << vec[i + p_size] << std::endl;
+        }
+    }
+    if (p_size == 4)
+    {
+        std::cout << "Main size: " << main.size() << std::endl;
+        std::cout << "Pend size: " << pend.size() << std::endl;
+    }
+    for (; i < vec.size(); i++)
+    {
+        // std::cout << "i: " << std::to_string(i) << std::endl;
+        odd.push_back(vec[i]);
+    }
+    if (p_size == 4)
+    {
+        std::cout << "vec size: " << vec.size() << std::endl;
+        _PrintVector("Main at beginning:", main, 1);
+        _PrintVector("Pend at the beginning:", pend, 1);
+        _PrintVector("Odd: ", odd, 1);
+    }
+    int pair = 0;
+    for (size_t i = p_size * 2 - 1; i < main.size(); i += p_size * 2)
+    {
+        // std::cout << "i: " << std::to_string(i) << std::endl;
+        if (i > vec.size() && pair != 1)
+            break;
+        block a;
+        block b;
+        pair += 1;
+        if (pair == 1)
+        {
+            b.value = main[i - p_size];
+            b.name = "b" + std::to_string(pair);
+            size_t k = i - (p_size * 2);
+            if (k > main.size())
+                k = 0;
+            for (; k < p_size; k++)
+                b.block.push_back(main[k]);
+            a.value = main[i];
+            a.name = "a" + std::to_string(pair);
+            for (size_t j = i - p_size + 1; j <= i; j++)
+                a.block.push_back(main[j]);
+            main_s.push_back(b);
+            main_s.push_back(a);
+        }
+        else
+        {
+            a.value = main[i];
+            a.name = "a" + std::to_string(pair);
+            // std::cout << "i: " << std::to_string(i - p_size) << std::endl;
+            for (size_t j = i - p_size + 1; j <= i; j++)
+                a.block.push_back(main[j]);
+            main_s.push_back(a);
+        }
+    }
+    for (size_t i = p_size - 1; i < pend.size(); i += p_size)
+    {
+        // std::cout << "2nd i: " << std::to_string(i) << std::endl;
+        block b;
+        b.value = pend[i];
+        b.name = "b" + std::to_string(pair);
+        size_t k = i - p_size + 1;
+        if (k > pend.size())
+            k = 0;
+        for (; k <= i; k++)
+            b.block.push_back(pend[k]);
+        pend_s.push_back(b);
+        pair += 1;
+    }
+    struct BlockLessByValue {
+        bool operator()(const block& a, const block& b) const {
+            if (a.value != b.value) return a.value < b.value;
+            return a.name < b.name;
+        }
+    };
+    for (size_t i = pend_s.size() - 1; i < pend_s.size(); i--)
+    {
+        std::vector<block>::iterator pos = std::lower_bound(main_s.begin(), main_s.end(), pend_s[i], BlockLessByValue());
+        main_s.insert(pos, pend_s[i]);
+    }
+    main.clear();
+    // std::cout << "main_s size: " << main_s.size() << std::endl;
+    for (size_t i = 0; i < main_s.size(); i++)
+    {
+        for (size_t j = 0; j < main_s[i].block.size(); j++)
+            main.push_back(main_s[i].block[j]);
+    }
+    if (p_size == 4)
+    {
+        std::cout << "Main size: " << main.size() << std::endl;
+        _PrintVector("Main:", main, 1);
+        std::cout << "Main_s:\n";
+        for (size_t i = 0; i < main_s.size(); i++)
+        {
+           std::cout << "|{name: " << main_s[i].name
+            << "} {value: " << main_s[i].value
+            << "} {block: ";
+            for (size_t j = 0; j < main_s[i].block.size(); j++)
+            std::cout << main_s[i].block[j] << " ";
+            std::cout << "}|" << std::endl;
+        }
+        _PrintVector("Pend:", pend, 1);
+    }
+    // std::cout << "Pend_s:\n";
+    // for (size_t i = 0; i < pend_s.size(); i++)
+    // {
+    //    std::cout << "name: " << pend_s[i].name;
+    //     << "\nvalue: " << pend_s[i].value;
+    //     << "\nblock: ";
+    //     for (size_t j = 0; j < pend_s[i].block.size(); j++)
+    //         std::cout << pend_s[i].block[j] << " ";
+    //     std::cout << "\n\t||||||||" << std::endl;
+    // }
+    vec.clear();
+    size_t l = 0;
+    for (;l < main.size(); l++)
+    {
+        // std::cout << "l: " << l << std::endl;
+        vec.push_back(main[l]);
+    }
+    for (size_t k = 0; k < odd.size(); k++)
+        vec.push_back(odd[k]);
+    if (p_size == 4)
+        std::cout << "vec size at end: " << vec.size() << std::endl;
