@@ -13,5 +13,5 @@ echo "TEST: duplicate values"
 ./PmergeMe 1 2 2 3 4
 
 echo "TEST: 3000 elements"
-#./PmergeMe $(jot 100000 1 | sort -R | head -n 3000 | tr '\n' ' ')
-# ./PmergeMe $(shuf -i 1-100000 -n 3000 | tr '\n' ' ')
+# ./PmergeMe $(jot 100000 1 | sort -R | head -n 3000 | tr '\n' ' ')
+./PmergeMe $(shuf -i 1-100000 -n 3000 | tr '\n' ' ')

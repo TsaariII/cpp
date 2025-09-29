@@ -276,3 +276,27 @@ void PmergeMe::_SortVector(std::vector<int>& vec, size_t p_size)
         vec.push_back(odd[k]);
     if (p_size == 4)
         std::cout << "vec size at end: " << vec.size() << std::endl;
+
+    // int pair = 0;
+    // for (size_t i = p_size * 2 - 1; i < odd_s; i += p_size)
+    // {
+    //     pair += 1;
+    //     if (i < p_size * 2)
+    //     {
+    //         main[pair - 1].name = "b" + std::to_string(pair);
+    //         main[pair - 1].value = vec[i - p_size];
+    //         main[pair - 1].block.insert(main[pair - 1].block.end(), vec.begin(), vec.begin() + i - p_size);
+    //         main[pair - 1].name = "a" + std::to_string(pair);
+    //         main[pair - 1].value = vec[i];
+    //         main[pair - 1].block.insert(main[pair - 1].block.end(), vec.begin(), vec.begin() + i);
+    //     }
+    //     else
+    //     {
+    //         pend[pair - 1].name = "b" + std::to_string(pair);
+    //         pend[pair - 1].value = vec[i - p_size];
+    //         pend[pair - 1].block.insert(main[pair - 1].block.end(), vec.begin(), vec.begin() + i - p_size);
+    //         main[pair - 1].name = "a" + std::to_string(pair);
+    //         main[pair - 1].value = vec[i];
+    //         main[pair - 1].block.insert(main[pair - 1].block.end(), vec.begin(), vec.begin() + i);
+    //     }
+    // }
