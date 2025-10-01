@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/PmergeMe.hpp"
+#include "PmergeMe.hpp"
 #include <iostream>
 
 int main(int argc, char **argv)

@@ -32,17 +32,11 @@ struct block {
     container_type block;
 };
 
-// template<class C>
-// concept IntContainer =
-//     std::ranges::random_access_range<C> &&
-//     std::same_as<std::ranges::range_value_t<C>, int>;
-
 class PmergeMe
 {
   private:
     std::vector<int> _DataVec;
     std::deque<int>  _DataDeq;
-    int comp;
 
     template<typename C, typename NewT>
     struct rebind_container;
