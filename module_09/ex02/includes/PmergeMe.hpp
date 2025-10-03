@@ -37,6 +37,7 @@ class PmergeMe
   private:
     std::vector<int> _DataVec;
     std::deque<int>  _DataDeq;
+    static int comparisons;
 
     template<typename C, typename NewT>
     struct rebind_container;
@@ -112,6 +113,7 @@ class PmergeMe
         {
             const size_t B0 = bi - (p_size - 1);
             const size_t A0 = B0 - p_size;
+            comparisons++;
             if (c[bi] < c[bi - p_size])
                 std::rotate(c.begin() + A0, c.begin() + B0, c.begin() + B0 + p_size);
         }
@@ -140,7 +142,6 @@ class PmergeMe
             for (std::size_t L = lastLabel; L > prevJ; --L) {
                 if (L >= firstLabel) labels.push_back(L);
             }
-
             return labels;
         };
         const auto labels = build_jacobsthal_order(pend.size());
@@ -153,7 +154,8 @@ class PmergeMe
             }
             return main.end();
         };
-        auto cmp = [](const auto& a, const auto& b) {
+        auto cmp = [this](const auto& a, const auto& b){
+            this->comparisons++;
             if (a.value != b.value) return a.value < b.value;
             return a.name < b.name;
         };
@@ -168,11 +170,19 @@ class PmergeMe
                 main.insert(main.begin(), pend[idx]);
                 continue;
             }
-            auto pos = std::lower_bound(main.begin(), boundEnd, pend[idx], cmp);
-            main.insert(pos, pend[idx]);
+            if (boundEnd == main.end())
+            {
+                comparisons++;
+                main.insert(main.end(), std::move(pend[idx]));
+            }
+            else
+            {
+                auto pos = std::lower_bound(main.begin(), boundEnd, pend[idx], cmp);
+                main.insert(pos, std::move(pend[idx]));
+            }
         }
         C flat;
-        if constexpr (requires(C x, std::size_t n){x.reverse(n);}){
+        if constexpr (requires(C x, std::size_t n){x.reserve(n);}){
             std::size_t total = odd.size();
             for (const auto& b : main) total += b.block.size();
             flat.reserve(total);
@@ -192,3 +202,4 @@ class PmergeMe
     void readInput(char **argv);
     void sorter();
 };
+
