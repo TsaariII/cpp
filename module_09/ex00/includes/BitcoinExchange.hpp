@@ -16,15 +16,15 @@
 
 class BitcoinExchange
 {
-    public:
-        BitcoinExchange();
-        BitcoinExchange(const std::string& db);
+    private:
         BitcoinExchange(const BitcoinExchange& copy);
         BitcoinExchange& operator=(const BitcoinExchange& copy);
+        BitcoinExchange();
+        std::map<std::string, float> _Rates;
+        void loadDB(const std::string& db);
+    public:
+        BitcoinExchange(const std::string& db);
         ~BitcoinExchange();
         float getRate(const std::string& date) const;
         bool isValidDate(const std::string& date) const;
-    private:
-        std::map<std::string, float> _Rates;
-        void loadDB(const std::string& db);
 };

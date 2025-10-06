@@ -193,13 +193,11 @@ class PmergeMe
         c.assign(flat.begin(), flat.end());
     }
 
-  public:
     PmergeMe();
     PmergeMe(const PmergeMe& copy);
     PmergeMe& operator=(const PmergeMe& copy);
+  public:
     ~PmergeMe();
-
     void readInput(char **argv);
     void sorter();
 };
-

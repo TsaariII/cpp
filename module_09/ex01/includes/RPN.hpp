@@ -22,10 +22,10 @@ class RPN
         std::stack<int> _Stack;
         bool _IsOperator(const std::string& symbol) const;
         int _Operator(const std::string& op, int a, int b) const;
-    public:
-        RPN();
         RPN(const RPN& copy);
         RPN& operator=(const RPN& copy);
+    public:
+        RPN();
         ~RPN();
         int evaluate(const std::string& expression);
 };
