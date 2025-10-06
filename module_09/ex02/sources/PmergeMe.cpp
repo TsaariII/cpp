@@ -59,23 +59,23 @@ void PmergeMe::readInput(char **argv)
 void PmergeMe::sorter()
 {
     comparisons = 0;
-    _Print("Before sorting ", _DataVec);
+    _Print("Before sorting: ", _DataVec);
     struct timeval start, end;
     gettimeofday(&start, NULL);
     _Sort(_DataVec, 1);
     gettimeofday(&end, NULL);
     double vecTime = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
+    _Print("After: ", _DataVec);
     std::cout << "Time to process a range of " << _DataVec.size()
               << " elements with std::vector : " << vecTime << " us" << std::endl;
-    std::cout << "Total comparisons: " << comparisons << std::endl;
+    // std::cout << "Total comparisons: " << comparisons << std::endl;
     comparisons = 0;
     gettimeofday(&start, NULL);
     _Sort(_DataDeq, 1);
     gettimeofday(&end, NULL);
     double deqTime = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
-    _Print("After ", _DataVec);
     std::cout << "Time to process a range of " << _DataDeq.size()
               << " elements with std::deque : " << deqTime << " us" << std::endl;
-    std::cout << "Total comparisons: " << comparisons << std::endl;
+    // std::cout << "Total comparisons: " << comparisons << std::endl;
 }
 

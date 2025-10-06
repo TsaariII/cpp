@@ -16,21 +16,38 @@
 #include <sstream>
 #include <algorithm>
 
-
-static bool isValidValue(std::string& rateStr, float& rate)
+static bool isdigits(const std::string& s)
 {
-    try
+    bool dotseen = false;
+    for (size_t i = 0; i <  s.size(); i++)
     {
-        rate = std::stof(rateStr);
-        if (rate < 0.0f)
-            return false;
-        if (rate > 1000.0f)
+        char  c = s[i];
+        if (c =='.')
+        {
+            if (dotseen) return false;
+            dotseen = true;
+        }
+        else if (!std::isdigit(static_cast<unsigned char>(c)))
             return false;
     }
-    catch(...)
-    {
+    return true;
+}
+
+static bool isValidValue(const std::string& rateStr, float& rate)
+{
+    if (rateStr.empty())
+        return false;
+    size_t pos = 0;
+    try {
+        rate = std::stof(rateStr, &pos);
+    } catch (...) {
         return false;
     }
+    if (pos != rateStr.size())
+        return false;
+    if (rate < 0.0f || rate > 1000.0f)
+        return false;
+
     return true;
 }
 
@@ -81,6 +98,8 @@ int main(int argc, char **argv)
         {
             if (rateStr.empty() || rate < 0.0f)
                 std::cerr << "Not a positive number" << std::endl;
+            else if (!isdigits(rateStr))
+                std::cerr << "Not a number" << std::endl;
             else
                 std::cerr << "Value is over 1000" << std::endl;
             continue;

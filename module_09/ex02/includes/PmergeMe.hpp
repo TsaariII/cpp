@@ -96,7 +96,7 @@ class PmergeMe
     template<typename C>
     void _Print(const std::string& label, const C& data) const
     {
-        std::cout << label << "(" << data.size() << "): ";
+        std::cout << label;
         for (size_t i = 0; i < data.size(); i++)
             std::cout << " " << data[i];
         std::cout << std::endl;
