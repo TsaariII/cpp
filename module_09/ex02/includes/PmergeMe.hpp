@@ -55,6 +55,7 @@ class PmergeMe
         r.name  = std::string(1, kind) + std::to_string(pairIdx);
         r.value = v[endInclusive];
         r.block.insert(r.block.end(), v.begin() + start, v.begin() + endInclusive + 1);
+        // std::cout << "Block size: " << r.block.size() << std::endl;
         return r;
     }
 
@@ -149,7 +150,7 @@ class PmergeMe
             const std::string aName = "a" + std::to_string(static_cast<int>(L));
             for (auto it = main.begin(); it != main.end(); ++it) {
                 if (it->name == aName) {
-                    return std::next(it);
+                    return it;
                 }
             }
             return main.end();
@@ -157,7 +158,7 @@ class PmergeMe
         auto cmp = [this](const auto& a, const auto& b){
             this->comparisons++;
             if (a.value != b.value) return a.value < b.value;
-            return a.name < b.name;
+                return a.name < b.name;
         };
         for (std::size_t li = 0; li < labels.size(); ++li) {
             const std::size_t L = labels[li];
@@ -170,16 +171,8 @@ class PmergeMe
                 main.insert(main.begin(), pend[idx]);
                 continue;
             }
-            if (boundEnd == main.end())
-            {
-                comparisons++;
-                main.insert(main.end(), std::move(pend[idx]));
-            }
-            else
-            {
-                auto pos = std::lower_bound(main.begin(), boundEnd, pend[idx], cmp);
-                main.insert(pos, std::move(pend[idx]));
-            }
+            auto pos = std::lower_bound(main.begin(), boundEnd, pend[idx], cmp);
+            main.insert(pos, std::move(pend[idx]));
         }
         C flat;
         if constexpr (requires(C x, std::size_t n){x.reserve(n);}){
